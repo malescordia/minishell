@@ -7,5 +7,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <limits.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #endif

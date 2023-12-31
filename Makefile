@@ -1,5 +1,6 @@
 NAME = minishell
 FLAGS = -Wall -Wextra -Werror
+RL_FLAGS = -lreadline -lhistory
 
 SRC = src/main.c
 OBJ = $(SRC:.c=.o)
@@ -7,7 +8,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@cc $(FLAGS) $(OBJ) -o $(NAME)
+	@cc $(FLAGS) $(OBJ) $(RL_FLAGS) -o $(NAME)
 	@echo "\033[32m[success]\033[0m Minishell compiled!"
 
 %.o: %.c
