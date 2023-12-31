@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:27:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2023/12/31 16:33:53 by gude-cas         ###   ########.fr       */
+/*   Updated: 2023/12/31 17:08:51 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ void print_env(char **env)
         printf("%s\n", env[i]);
         i++;
     }
+}
+
+void print_echo(char *str)
+{
+    int i = 5;
+    while(str[i])
+    {
+        printf("%c", str[i]);
+        i++;
+    }
+    printf("\n");
 }
 
 int main(int ac, char **av, char **env)
@@ -41,6 +52,10 @@ int main(int ac, char **av, char **env)
             else if(ft_strcmp(input, "env") == 0)
             {
                 print_env(env);
+            }
+            else if(ft_strncmp(input, "echo ", 5) == 0)
+            {
+                print_echo(input);
             }
         }
     }
