@@ -6,17 +6,26 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:27:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2023/12/31 16:29:51 by gude-cas         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:33:53 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/minishell.h"
 
+void print_env(char **env)
+{
+    int i = 0;
+    while(env[i])
+    {
+        printf("%s\n", env[i]);
+        i++;
+    }
+}
+
 int main(int ac, char **av, char **env)
 {
     (void)av;
-    (void)env;
     char *input;
 
     if(ac == 1)
@@ -28,6 +37,10 @@ int main(int ac, char **av, char **env)
             if(ft_strcmp(input, "pwd") == 0)
             {
                 printf("%s\n", getenv("PWD"));
+            }
+            else if(ft_strcmp(input, "env") == 0)
+            {
+                print_env(env);
             }
         }
     }
