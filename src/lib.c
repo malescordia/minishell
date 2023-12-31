@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 16:30:34 by gude-cas          #+#    #+#             */
-/*   Updated: 2023/12/31 16:30:38 by gude-cas         ###   ########.fr       */
+/*   Created: 2023/12/31 16:27:51 by gude-cas          #+#    #+#             */
+/*   Updated: 2023/12/31 16:28:50 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/minishell.h"
 
-#ifndef MINISHELL_H
-#define MINISHELL_H
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <limits.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-
-/* LIB */
-int ft_strcmp(char *s1, char *s2);
-
-#endif
+int ft_strcmp(char *s1, char *s2)
+{
+    while(*s1 && (*s1 == *s2))
+    {
+        s1++;
+        s2++;
+    }
+    return(*s1 - *s2);
+}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/31 16:27:46 by gude-cas          #+#    #+#             */
+/*   Updated: 2023/12/31 16:29:51 by gude-cas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -13,8 +25,10 @@ int main(int ac, char **av, char **env)
         {
             input = readline("GUIGUISHELL> ");
             add_history(input);
-            free(input);
-            return(0);
+            if(ft_strcmp(input, "pwd") == 0)
+            {
+                printf("%s\n", getenv("PWD"));
+            }
         }
     }
     else

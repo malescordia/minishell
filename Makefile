@@ -2,7 +2,7 @@ NAME = minishell
 FLAGS = -Wall -Wextra -Werror
 RL_FLAGS = -lreadline -lhistory
 
-SRC = src/main.c
+SRC = src/main.c src/lib.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
