@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:27:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2023/12/31 17:08:51 by gude-cas         ###   ########.fr       */
+/*   Updated: 2023/12/31 17:16:10 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int main(int ac, char **av, char **env)
 {
     (void)av;
     char *input;
+    char *oldpwd = getenv("OLDPWD");
 
     if(ac == 1)
     {
@@ -56,6 +57,10 @@ int main(int ac, char **av, char **env)
             else if(ft_strncmp(input, "echo ", 5) == 0)
             {
                 print_echo(input);
+            }
+            else if(ft_strcmp(input, "cd -") == 0)
+            {
+                chdir(oldpwd);
             }
         }
     }
