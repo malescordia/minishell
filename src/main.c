@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:27:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2023/12/31 17:16:10 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:20:30 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ int main(int ac, char **av, char **env)
             else if(ft_strcmp(input, "cd -") == 0)
             {
                 chdir(oldpwd);
+            }
+            else if(ft_strcmp(input, "exit") == 0)
+            {
+                exit(EXIT_SUCCESS);
             }
         }
     }
@@ -145,4 +149,9 @@ Parts of a Shell Program:
     It will alsi if necessary create pipes to communicate the output of one process to the input of the next one. Additianlly, it
     will redirect the standard input, standard output, and standard error if there are any redirections.
 ----------------------------------------------------------------------------------------------------------------------------------------
+Relative path specifies the location of a directory in relation to the current working directory. For example, if your current directory is
+'/home/user' the command 'cd Documents' changes the current directory to '/home/user/Documents', assuming that there is a subdirectory named
+'Documents' in the current directory.
+
+An absolute path specifies the complete path from the root directory. For example: 'cd var/log'
 */
