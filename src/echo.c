@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 15:42:48 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/01/03 16:28:51 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:39:37 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void print_echo(char *str)
     char *var = malloc(sizeof(10));
     while(str[i])
     {
+        if(str[i] == '"')
+            i++;
         if(str[i] == '$')
         {
             i++;
-            while(str[i] && (str[i] != ' ' && str[i] != '\t'))
+            while(str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '"'))
             {
                 var[j] = str[i];
                 j++;
