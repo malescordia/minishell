@@ -6,72 +6,40 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:27:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/01/02 13:20:30 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:49:56 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/minishell.h"
 
-void print_env(char **env)
+void minishell(char **env)
 {
-    int i = 0;
-    while(env[i])
+    t_shell data;
+    
+    while(42)
     {
-        printf("%s\n", env[i]);
-        i++;
+        data.input = readline("\033[36mGUI\033[32mGUI\033[31mSHELL>\033[0m ");
+        add_history(data.input);
+        if(ft_strcmp(data.input, "pwd") == 0)
+            printf("%s\n", getenv("PWD"));
+        else if(ft_strcmp(data.input, "env") == 0)
+            print_env(env);
+        else if(ft_strncmp(data.input, "echo ", 5) == 0)
+            print_echo(data.input);
+        else if(ft_strcmp(data.input, "exit") == 0)
+            exit(0);
     }
-}
-
-void print_echo(char *str)
-{
-    int i = 5;
-    while(str[i])
-    {
-        printf("%c", str[i]);
-        i++;
-    }
-    printf("\n");
 }
 
 int main(int ac, char **av, char **env)
 {
     (void)av;
-    char *input;
-    char *oldpwd = getenv("OLDPWD");
 
     if(ac == 1)
-    {
-        while(1)
-        {
-            input = readline("GUIGUISHELL> ");
-            add_history(input);
-            if(ft_strcmp(input, "pwd") == 0)
-            {
-                printf("%s\n", getenv("PWD"));
-            }
-            else if(ft_strcmp(input, "env") == 0)
-            {
-                print_env(env);
-            }
-            else if(ft_strncmp(input, "echo ", 5) == 0)
-            {
-                print_echo(input);
-            }
-            else if(ft_strcmp(input, "cd -") == 0)
-            {
-                chdir(oldpwd);
-            }
-            else if(ft_strcmp(input, "exit") == 0)
-            {
-                exit(EXIT_SUCCESS);
-            }
-        }
-    }
+        minishell(env);
     else
-    {
         printf("Invalid number of arguments.\n");
-    }
     return(0);
 }
 
