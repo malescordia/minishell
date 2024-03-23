@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:27:04 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:38:34 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:36:14 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	**init_env(char **envp)
 {
 	int		i;
-	char	*buffer;
+	char	*tmp;
 	t_list	*node;
 	t_list	**env;
 
@@ -24,14 +24,15 @@ t_list	**init_env(char **envp)
 	*env = NULL;
 	while (envp[i])
 	{
-		buffer = ft_strdup(envp[i]);
-		node = ft_lstnew(buffer);
+		tmp = ft_strdup(envp[i]);
+		node = ft_lstnew(tmp);
 		ft_lstadd_back(env, node);
 		i++;
 	}
 	return (env);
 }
 
+/* checks if there is str already in env */
 void	env_override(char *str, t_list **env)
 {
 	t_list	*tmp;

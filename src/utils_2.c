@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 13:50:08 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/23 15:58:11 by gude-cas         ###   ########.fr       */
+/*   Created: 2024/03/18 13:43:27 by gude-cas          #+#    #+#             */
+/*   Updated: 2024/03/18 13:43:56 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/minishell.h"
 
-size_t	ft_strlen(const char *str)
+void	list_print(t_list **lst)
 {
-	size_t	i;
+	t_list	*tmp;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	tmp = *lst;
+	while (tmp)
+	{
+		ft_putendl_fd((char *)tmp->content, 1);
+		tmp = tmp->next;
+	}
 }

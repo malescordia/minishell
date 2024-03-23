@@ -6,13 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:05 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 19:40:28 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:29:31 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_list **init_export(t_data *data)
+t_list	**init_export(t_data *data)
 {
 	int		i;
 	char	*tmp;
@@ -23,7 +23,7 @@ t_list **init_export(t_data *data)
 	i = 0;
 	export = malloc(sizeof(export));
 	if (!export)
-		perror("malloc");
+		malloc_error(data);
 	*export = NULL;
 	env_buffer = (*data->env);
 	while (i < ft_lstsize((*data->env)))
@@ -35,31 +35,27 @@ t_list **init_export(t_data *data)
 		i++;
 	}
 	list_sort(data, export);
-	return (export);	
+	return (export);
 }
 
-int	export_error(char *input)
+/* checks if export arguments are valid */
+int	export_error(t_data *data, char *input)
 {
 	int	i;
 
 	i = 0;
 	if (ft_isdigit(input[0]) || input[0] == '=')
-	{
-		perror("export");
-		return (1);
-	}
+		return (export_error_message(data, input));
 	while (i < (int)ft_strlen(input) && input[i] != '=')
 	{
-		if (!ft_isalnum(input[i] && input[i] != '_'))
-		{
-			perror("export");
-			return (1);
-		}
+		if (!ft_isalnum(input[i]) && input[i] != '_')
+			return (export_error_message(data, input));
 		i++;
 	}
 	return (0);
 }
 
+/* takes input and creates new string in specific format */
 char	*export_input(char *input)
 {
 	int		i;
@@ -84,13 +80,14 @@ char	*export_input(char *input)
 	return (buffer2);
 }
 
-int	export_override(char *str, t_list **export)
+/* checks if there is str already in export lsit */
+int	export_override(char *input, t_list **export)
 {
 	char	*buffer;
 	t_list	*tmp;
 
 	tmp = *export;
-	buffer = export_input(str);
+	buffer = export_input(input);
 	while (tmp)
 	{
 		if (!ft_strchr(buffer, '=') && ft_strcmp_nochr(buffer, tmp->content,
@@ -114,13 +111,13 @@ int	export_override(char *str, t_list **export)
 
 void	read_export(t_data *data, char **input)
 {
-	int i;
-	t_list *node;
+	int		i;
+	t_list	*node;
 
 	i = 1;
 	while (i < input_size(input))
 	{
-		if (export_error(input[i]))
+		if (export_error(data, input[i]))
 		{
 			i++;
 			continue ;

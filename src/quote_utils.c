@@ -6,18 +6,18 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:50:35 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/02/22 17:14:47 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:54:13 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// skip_quotes
+/* skip quoted strings */
 int	ignore_quotes(char *input, int i)
 {
 	char	quote;
 
-	if (input[i] == '\'' || input[i] == '\"')
+	if (check_char(input[i]) == 3)
 	{
 		quote = input[i++];
 		while (input[i] && input[i] != quote)
@@ -27,6 +27,7 @@ int	ignore_quotes(char *input, int i)
 	return (i);
 }
 
+/* returns string inside the quotes */
 char	*remove_quotes(char *str)
 {
 	int		i;
@@ -36,10 +37,10 @@ char	*remove_quotes(char *str)
 
 	i = 0;
 	j = 0;
-	tmp = ft_calloc(sizeof(char), (ft_strlen(str) - get_quote_nb(str) + 1));
+	tmp = ft_calloc(sizeof(char), (ft_strlen(str) - get_nb_of_quotes(str) + 1));
 	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '\"')
+		if (check_char(str[i]) == 3)
 		{
 			quote = str[i++];
 			while (str[i] && str[i] != quote)
@@ -53,8 +54,8 @@ char	*remove_quotes(char *str)
 	return (tmp);
 }
 
-// quote_num
-int	get_quote_nb(char *str)
+/* returns the number of quotes */
+int	get_nb_of_quotes(char *str)
 {
 	int	i;
 	int	n;
@@ -63,7 +64,7 @@ int	get_quote_nb(char *str)
 	n = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '\"')
+		if (check_char(str[i] == 3))
 		{
 			i = ignore_quotes(str, i);
 			n += 2;

@@ -6,13 +6,12 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:03:02 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:49:13 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:45:19 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// arr_size
 int	input_size(char **input)
 {
 	int	i;
@@ -25,7 +24,7 @@ int	input_size(char **input)
 	return (i);
 }
 
-char	**input_dup(char **old)
+char	**input_dup(t_data *data, char **old)
 {
 	int		i;
 	char	**new;
@@ -33,7 +32,7 @@ char	**input_dup(char **old)
 	i = 0;
 	new = malloc(sizeof(char *) * (input_size(old) + 1));
 	if (!new)
-		perror("malloc");
+		malloc_error(data);
 	while (old && old[i])
 	{
 		new[i] = ft_strdup(old[i]);
@@ -43,6 +42,10 @@ char	**input_dup(char **old)
 	return (new);
 }
 
+/* returns 1 if white space */
+/* returns 2 if operator */
+/* returns 3 if quote */
+/* returns 4 if dollar sign */
 int	check_char(char c)
 {
 	if (c == ' ' || c == '\t')

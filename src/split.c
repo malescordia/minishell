@@ -6,14 +6,14 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:30:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:59:44 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:21:50 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// spli_main
-char	**split_input(char *input)
+/* splits input into an array of char * */
+char	**split_input(t_data *data, char *input)
 {
 	int		i;
 	int		len;
@@ -24,19 +24,21 @@ char	**split_input(char *input)
 	words = count_words(input);
 	buffer = malloc(sizeof(char *) * (words + 1));
 	if (!buffer)
-		perror("malloc");
+		malloc_error(data);
 	while (i < words)
 	{
 		while (*input && check_char(*input) == 1)
 			input++;
 		len = split_words(input);
-		buffer[i++] = split_alloc(input, len);
+		buffer[i++] = split_alloc(data, input, len);
 		input = input + len;
 	}
 	buffer[i] = 0;
 	return (buffer);
 }
 
+/* return the length of input until the next whitespace
+	or sparating meta_char */
 int	split_words(char *input)
 {
 	int	i;
@@ -47,28 +49,29 @@ int	split_words(char *input)
 	if (input[i] && check_char(input[i]) == 2)
 		return (parse_others(input, i));
 	if (input[i] && input[i] == '$')
-		return (parse_env_var(input, i));
+		return (parse_env(input, i));
 	if (input[i] && !check_char(input[i]))
 		return (parse_normal(input, i));
 	return (i);
 }
 
-char	*split_alloc(char *input, int len)
+char	*split_alloc(t_data *data, char *input, int len)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
+	tmp = NULL;
 	tmp = malloc(sizeof(char) * (len + 1));
 	if (!tmp)
-		perror("malloc");
+		malloc_error(data);
 	while (*input && i < len)
 		tmp[i++] = *input++;
 	tmp[i] = '\0';
 	return (tmp);
 }
 
-// word_counter
+/* how many words are in input */
 int	count_words(char *input)
 {
 	int	i;
@@ -87,7 +90,7 @@ int	count_words(char *input)
 		else if (input[i] && check_char(input[i]) == 3)
 			i = parse_quotes(input, input[i], i);
 		else if (input[i] && input[i] == '$')
-			i = parse_env_var(input, i);
+			i = parse_env(input, i);
 		else if (input[i] && !check_char(input[i]))
 			i = parse_normal(input, i);
 	}

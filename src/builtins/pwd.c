@@ -6,13 +6,12 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:41:40 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 17:43:49 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:09:07 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// pwd
 void	read_pwd(t_data *data)
 {
 	char	cwd[PATH_MAX + 1];

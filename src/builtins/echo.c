@@ -6,13 +6,12 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:33:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 19:03:24 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:55:02 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// echo_flag
 int	check_flag(char *str)
 {
 	int	i;
@@ -28,7 +27,6 @@ int	check_flag(char *str)
 	return (1);
 }
 
-// echo_print
 void	print_echo(char **cmds, int i)
 {
 	int	j;
@@ -36,7 +34,7 @@ void	print_echo(char **cmds, int i)
 	while (cmds && i < input_size(cmds))
 	{
 		j = 0;
-		while (i < (int)ft_strlen(cmds[i]) && cmds[i][j])
+		while (j < (int)ft_strlen(cmds[i]) && cmds[i][j])
 		{
 			if (cmds[i][j])
 				printf("%c", cmds[i][j++]);
@@ -47,7 +45,6 @@ void	print_echo(char **cmds, int i)
 	}
 }
 
-// ft_echo
 int	read_echo(t_data *data, char **cmds)
 {
 	int	i;

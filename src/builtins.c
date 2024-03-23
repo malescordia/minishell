@@ -6,13 +6,12 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:16:18 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 16:25:21 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:29:42 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// is_built_in
 int	is_builtin(char *str)
 {
 	if (!str)
@@ -25,10 +24,21 @@ int	is_builtin(char *str)
 	return (0);
 }
 
-// built_ins
-void read_builtin(t_data *data, char **cmds, int parent)
+void	export_builtin(t_data *data, char **cmds)
 {
-    if (ft_strcmp(cmds[0], "echo") == 0)
+	if (ft_strcmp(cmds[0], "export") == 0)
+	{
+		list_sort(data, data->export);
+		if (input_size(cmds) > 1)
+			read_export(data, cmds);
+		else
+			list_print(data->export);
+	}
+}
+
+void	read_builtin(t_data *data, char **cmds, int parent)
+{
+	if (ft_strcmp(cmds[0], "echo") == 0)
 		read_echo(data, cmds);
 	else if (ft_strcmp(cmds[0], "cd") == 0)
 		read_cd(data, cmds);
@@ -41,5 +51,5 @@ void read_builtin(t_data *data, char **cmds, int parent)
 	else if (ft_strcmp(cmds[0], "unset") == 0)
 		read_unset(data, cmds);
 	else if (ft_strcmp(cmds[0], "export") == 0)
-		read_export(data, cmds);
+		export_builtin(data, cmds);
 }

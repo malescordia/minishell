@@ -6,39 +6,71 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:40:58 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/05 14:02:48 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:42:10 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-/* PATH_MAX IS DEFINED IN <linux/limits.h> AND REPRESENTS THE MAX 
+/* PATH_MAX IS DEFINED IN <linux/limits.h> AND REPRESENTS THE MAX
 LENGTH OF A FILE PATH ON THE CURRENT SYSTEM */
 
-void	free_all(t_data *data)
+int		g_signal = 0;
+
+/* TESTERS */
+void	print_cmds(t_cmds *cmds)
 {
+	char	**args;
+
+	while (cmds != NULL)
+	{
+		args = cmds->args;
+		while (*args != NULL)
+		{
+			printf("%s ", *args);
+			args++;
+		}
+		printf("\n");
+		cmds = cmds->next;
+	}
+}
+/* TESTERS */
+
+int	print_token_message(char token)
+{
+	ft_putstr_fd("error: unexpected token '", 2);
+	write(2, &token, 1);
+	ft_putstr_fd("\'\n", 2);
+	return (1);
+}
+
+void	free_all(t_data *data, int ac, char **av)
+{
+	post_process_signal();
+	signal_exit(data);
 	free(data->input);
 	free_array(data->main_input);
 	if (data->fd_in != -1)
 		close(data->fd_in);
 	if (data->fd_out != -1)
 		close(data->fd_out);
+	(void)ac;
+	(void)av;
 }
 
 int	main(int ac, char **av, char **envp)
 {
 	t_data	*data;
 
-	(void)ac;
-	(void)av;
 	data = malloc(sizeof(t_data));
 	if (!data)
-		perror("malloc");
+		malloc_error(data);
 	data->env = init_env(envp);
 	data->export = init_export(data);
 	data->exit = 0;
 	while (42)
 	{
+		sig_init();
 		data->input = readline(PURPLE "Minishell> " R);
 		if (ft_strlen(data->input) != 0)
 			add_history(data->input);
@@ -49,7 +81,7 @@ int	main(int ac, char **av, char **envp)
 			start(data);
 			free_cmds(data->cmds);
 		}
-		free_all(data);
+		free_all(data, ac, av);
 	}
 	exit(data->exit);
 }

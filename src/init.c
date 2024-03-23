@@ -6,31 +6,32 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:26:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/05 14:00:01 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:10:11 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// var_init
 int	init_data(t_data *data)
 {
-	char	**tmp;
+	char	**new_input;
 
 	data->cmd_in_fd = 0;
 	data->fd_in = dup(0);
 	data->fd_out = dup(1);
-	data->main_input = split_input(data->input);
-	tmp = expander(data);
+	data->main_input = split_input(data, data->input);
+	if (heredoc_init(data, data->main_input))
+		return (1);
+	new_input = expander(data);
 	free_array(data->main_input);
-	data->main_input = input_dup(tmp);
-	free_array(tmp);
+	data->main_input = input_dup(data, new_input);
+	free_array(new_input);
 	data->nb_of_cmds = get_cmds_nb(data->main_input);
 	data->cmds = init_cmds(data);
+	sig_init();
 	return (0);
 }
 
-// cmd_list_init
 t_cmds	*init_cmds(t_data *data)
 {
 	int		i;

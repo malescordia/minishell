@@ -6,13 +6,15 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:40:48 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 18:58:51 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:34:01 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	is_executable(t_data *data, char *cmd, char *cmd_path, char **paths)
+/* stat is used to validate if the cmd is a file and
+	fcheck if it isnt a directory */
+int	is_usable(t_data *data, char *cmd, char *cmd_path, char **paths)
 {
 	struct stat	path_stat;
 
@@ -44,7 +46,7 @@ int	is_executable(t_data *data, char *cmd, char *cmd_path, char **paths)
 int	is_exec(t_data *data, char *cmd, char **paths)
 {
 	int		i;
-	char	*buffer;
+	char	*buffer1;
 	char	*buffer2;
 
 	i = 0;
@@ -52,11 +54,11 @@ int	is_exec(t_data *data, char *cmd, char **paths)
 		return (1);
 	while (paths[i])
 	{
-		buffer = ft_strjoin(paths[i++], "/");
-		buffer2 = ft_strjoin(buffer, cmd);
-		free(buffer);
+		buffer1 = ft_strjoin(paths[i++], "/");
+		buffer2 = ft_strjoin(buffer1, cmd);
+		free(buffer1);
 		if (access(buffer2, F_OK) == 0)
-			return (is_executable(data, cmd, buffer2, paths));
+			return (is_usable(data, cmd, buffer2, paths));
 		free(buffer2);
 	}
 	return (1);

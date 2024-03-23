@@ -6,13 +6,12 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:02:57 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/05 13:25:50 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:18:26 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// find_cmd_pos
 int	find_next_cmd(char **input, int i)
 {
 	while (input[i] && input[i][0] && ft_strcmp(input[i], "|") != 0)
@@ -22,6 +21,7 @@ int	find_next_cmd(char **input, int i)
 	return (i);
 }
 
+/* returns how many valid cmds there are in main_input */
 int	get_cmds_nb(char **input)
 {
 	int	i;
@@ -65,15 +65,14 @@ int	get_args_nb(char **input, int i)
 	return (count);
 }
 
-// cmdlist_lstnew
 t_cmds	*create_node(t_data *data, int i)
 {
 	t_cmds	*cmds;
 
 	cmds = malloc(sizeof(t_cmds));
 	if (!cmds)
-		perror("malloc");
-	cmds->args = tokenizer(data->main_input, i);
+		malloc_error(data);
+	cmds->args = tokenizer(data, data->main_input, i);
 	cmds->next = NULL;
 	return (cmds);
 }

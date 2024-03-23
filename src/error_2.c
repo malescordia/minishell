@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   error_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 13:50:08 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/23 15:58:11 by gude-cas         ###   ########.fr       */
+/*   Created: 2024/03/18 14:58:30 by gcapa-pe          #+#    #+#             */
+/*   Updated: 2024/03/18 15:00:33 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/minishell.h"
 
-size_t	ft_strlen(const char *str)
+void	heredoc_eof(char *limiter)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	ft_putstr_fd("warning: heredoc delimited ", 2);
+	ft_putstr_fd("by end_of_file (wanted '", 2);
+	ft_putstr_fd(limiter, 2);
+	ft_putstr_fd("')\n", 2);
 }

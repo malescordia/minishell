@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:40:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 18:49:26 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:43:01 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ unsigned long long int	exit_atoull(const char *str)
 	return (n);
 }
 
+/* checks if cmd has any formatting errors: alpha chars, multiple '-'/'+',
+	special chars, '-'/'+' out of place */
 int	exit_format_error(char *cmd)
 {
 	char	quotes;
@@ -77,6 +79,8 @@ int	other_exit_status(char *cmd)
 	}
 }
 
+/* in bash <exit [n]> prints an error if n is larger than LLONG_MAX 
+	or smaller then LLONG_MIN */
 void	read_exit(t_data *data, char **cmds, int parent)
 {
 	if (input_size(cmds) >= 2 && cmds[1] && cmds[1][0])
@@ -87,7 +91,7 @@ void	read_exit(t_data *data, char **cmds, int parent)
 		{
 			ft_putstr_fd("error: exit: ", 2);
 			ft_putstr_fd(cmds[1], 2);
-			ft_putstr_fd("numeric argument required\n", 2);
+			ft_putstr_fd(": numeric argument required\n", 2);
 			data->exit = 2;
 			free_data(data);
 		}

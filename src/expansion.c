@@ -6,43 +6,42 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:58:45 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/02/22 15:00:37 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:30:29 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// replaced_arr
+/* replaces env variables with their value */
 char	**expander(t_data *data)
 {
-	int		i;
-	int		j;
+	int		arr_index;
+	int		new_index;
 	char	*value;
 	char	**new_input;
 
 	value = NULL;
-	i = 0;
-	j = 0;
+	arr_index = 0;
+	new_index = 0;
 	new_input = ft_calloc(sizeof(char *), input_size(data->main_input) + 1);
-	while (data->main_input[i])
+	while (data->main_input[arr_index])
 	{
-		if (!ft_strchr(data->main_input[i], '$'))
+		if (!ft_strchr(data->main_input[arr_index], '$'))
 		{
-			new_input[j] = ft_strdup(data->main_input[i]);
-			i++;
-			j++;
+			new_input[new_index] = ft_strdup(data->main_input[arr_index]);
+			arr_index++;
+			new_index++;
 			continue ;
 		}
-		value = get_value(data, data->main_input[i++]);
+		value = get_value(data, data->main_input[arr_index++]);
 		if (value && value[0])
-			new_input[j++] = ft_strdup(value);
+			new_input[new_index++] = ft_strdup(value);
 		free(value);
 	}
-	new_input[i] = NULL;
+	new_input[new_index] = NULL;
 	return (new_input);
 }
 
-// replace_var
 char	*substitute_value(t_data *data, char *result, char quotes, int i)
 {
 	char	*value;
@@ -51,8 +50,9 @@ char	*substitute_value(t_data *data, char *result, char quotes, int i)
 
 	value = NULL;
 	buffer = NULL;
+	tmp = NULL;
 	tmp = ft_strndup(result, i);
-	if (!((result[i + 1] == '\'' || result[i + 1] == '\"') && !quotes))
+	if (!(check_char(result[i + 1]) == 3 && !quotes))
 		buffer = ft_strndup(result + i, get_value_len(result + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		value = ft_strdup(buffer);
@@ -70,7 +70,6 @@ char	*substitute_value(t_data *data, char *result, char quotes, int i)
 	return (result);
 }
 
-// replace_str
 char	*get_value(t_data *data, char *str)
 {
 	int		i;
@@ -84,7 +83,7 @@ char	*get_value(t_data *data, char *str)
 	result = ft_strdup(str);
 	while (result && result[i])
 	{
-		if (!quotes && (result[i] == '\'' || result[i] == '\"'))
+		if (!quotes && check_char(result[i]) == 3)
 			quotes = result[i];
 		else if (quotes && result[i] == quotes)
 			quotes = '\0';
@@ -99,7 +98,6 @@ char	*get_value(t_data *data, char *str)
 	return (result);
 }
 
-// get_new_index
 int	get_index(t_data *data, char *result, char quotes, int i)
 {
 	int		j;
@@ -109,7 +107,7 @@ int	get_index(t_data *data, char *result, char quotes, int i)
 	value = NULL;
 	buffer = NULL;
 	j = 0;
-	if ((result[i + 1] != '\'' && result[i + 1] != '\"') && !quotes)
+	if (!(check_char(result[i + 1]) == 3 && !quotes))
 		buffer = ft_strndup(result + i, get_value_len(result + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		value = ft_strdup(buffer);
@@ -118,21 +116,23 @@ int	get_index(t_data *data, char *result, char quotes, int i)
 	j = ft_strlen(value);
 	free(buffer);
 	free(value);
-	return(j);
+	return (j);
 }
 
-// get_var_len
+/* if $? return 2 */
+/* if $3 replace with NULL */
+/* while str[i] is alphanumerical or '_' i++ */
 int	get_value_len(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (str[i] != '$')
+	if (check_char(str[i]) != 4)
 		return (0);
 	i++;
 	if (str[i] && (str[i] == '?' || ft_isdigit(str[i])))
 		return (2);
-	while (str[i] && (ft_isalnum(str[i] || str[i] == '_')))
+	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
 	return (i);
 }

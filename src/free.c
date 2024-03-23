@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:49:51 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 15:36:41 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:25:59 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	free_list_malloc(t_list **list)
 		free(list);
 }
 
-// free_cmd_list
 void	free_cmds(t_cmds *cmds)
 {
 	t_cmds	*tmp;
@@ -69,10 +68,9 @@ void	free_cmds(t_cmds *cmds)
 	}
 }
 
-// free_ms
 void	free_data(t_data *data)
 {
-	int exit_status;
+	int	exit_status;
 
 	if (!data)
 		exit(data->exit);
@@ -90,6 +88,7 @@ void	free_data(t_data *data)
 	if (data->cmds)
 		free_cmds(data->cmds);
 	free_list_malloc(data->env);
+	free_list_malloc(data->export);
 	exit_status = data->exit;
 	free(data);
 	rl_clear_history();

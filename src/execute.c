@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:15:24 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/05 12:57:23 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:52:35 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,25 @@ void	execute(t_data *data, char **cmds)
 	char	**env;
 
 	if (!cmds || !cmds[0] || !cmds[0][0])
-		write(2, "error: command not found\n", 25);
+		ft_putstr_fd("error: command not found\n", 2);
 	if (is_builtin(cmds[0]))
 		read_builtin(data, cmds, 0);
+	if (g_signal == SIGPIPE)
+		free_data(data);
 	if (!cmds || !cmds[0] || !cmds[0][0] || is_builtin(cmds[0]))
 		free_data(data);
 	paths = get_paths(data->env, cmds[0]);
 	if (is_exec(data, cmds[0], paths) == 0)
 		free_data(data);
 	cmd_path = get_cmd_path(data, paths, cmds[0]);
-    free_array(paths);
-    if(!cmd_path)
-        free_data(data);
-    env = list_to_array(data->env);
-    execve(cmd_path, cmds, env);
-    free(cmd_path);
-    data->exit = errno;
-    free_data(data);
+	free_array(paths);
+	if (!cmd_path)
+		free_data(data);
+	env = list_to_array(data->env);
+	execve(cmd_path, cmds, env);
+	free(cmd_path);
+	data->exit = errno;
+	free_data(data);
 }
 
 char	**get_paths(t_list **env, char *cmd)
@@ -101,8 +103,8 @@ char	*get_cmd_path(t_data *data, char **paths, char *cmd)
 		buffer1 = ft_strjoin(paths[i], "/");
 		buffer2 = ft_strjoin(buffer1, cmd);
 		free(buffer1);
-		if(access(buffer2, 0) == 0)
-			return(buffer2);
+		if (access(buffer2, 0) == 0)
+			return (buffer2);
 		free(buffer2);
 		i++;
 	}

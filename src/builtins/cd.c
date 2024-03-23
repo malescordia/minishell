@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:03:57 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 19:00:41 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:59:14 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	cd_home(t_data *data)
 {
 	char	*home;
 
-	home = ft_strtrim(env_grep_value(*data->env, "HOME="), "HOMER=");
+	home = ft_strtrim(env_grep_value(*data->env, "HOME="), "HOME=");
 	if (!home)
 	{
 		ft_putstr_fd("error: cd: HOME is undefined\n", 2);
@@ -40,7 +40,7 @@ void	cd_env(t_data *data, char *old_pwd)
 
 	value = malloc(sizeof(char *) * 4);
 	if (!value)
-		perror("malloc");
+		malloc_error(data);
 	ft_bzero(pwd, PATH_MAX + 1);
 	getcwd(pwd, sizeof(pwd));
 	value[0] = ft_strdup("export");
@@ -55,7 +55,7 @@ void	cd_env(t_data *data, char *old_pwd)
 
 void	read_cd(t_data *data, char **path)
 {
-	char old_pwd[PATH_MAX + 1];
+	char	old_pwd[PATH_MAX + 1];
 
 	ft_bzero(old_pwd, PATH_MAX + 1);
 	getcwd(old_pwd, sizeof(old_pwd));

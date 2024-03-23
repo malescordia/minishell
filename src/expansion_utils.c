@@ -6,13 +6,12 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:23:38 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 18:13:20 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:58:11 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// var_iter
 char	*value_iter(t_data *data, char *value)
 {
 	char	*buffer;
@@ -35,7 +34,6 @@ char	*value_iter(t_data *data, char *value)
 	return (NULL);
 }
 
-// var_cmp
 char	*value_cmp(char *env, char *value)
 {
 	char	*tmp1;
@@ -53,7 +51,6 @@ char	*value_cmp(char *env, char *value)
 	return (NULL);
 }
 
-// var_str
 char	*env_grep_value(t_list *env, char *value)
 {
 	t_list	*tmp;

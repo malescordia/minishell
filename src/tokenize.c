@@ -6,14 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:52:25 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/02/22 17:06:35 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:31:29 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// cmd_with_flags
-char	**tokenizer(char **input, int i)
+char	**tokenizer(t_data *data, char **input, int i)
 {
 	int		j;
 	int		args;
@@ -23,31 +22,31 @@ char	**tokenizer(char **input, int i)
 	args = get_args_nb(input, i);
 	tmp = malloc(sizeof(char *) * (args + 1));
 	if (!tmp)
-		perror("malloc");
+		malloc_error(data);
 	while (input[i] && !input[i][0])
 		i++;
 	while (j < args)
 	{
-		if (ft_strcmp(input[i], ">") == 0 || ft_strcmp(input[i], ">>") == 0
-			|| ft_strcmp(input[i], "<") == 0 || ft_strcmp(input[i], "<<") == 0)
+		if (input[i] && (ft_strcmp(input[i], ">") == 0 || ft_strcmp(input[i],
+					">>") == 0 || ft_strcmp(input[i], "<") == 0
+				|| ft_strcmp(input[i], "<<") == 0))
 			i += 2;
 		else if (ft_strcmp(input[i], "|") == 0)
 			break ;
 		else
-			i = token_expand(tmp, input[j++], i);
+			j = token_expand(data, tmp, input[i++], j);
 	}
-	tmp[i] = NULL;
+	tmp[j] = NULL;
 	return (tmp);
 }
 
-// split_expansion
-int	token_expand(char **tmp, char *input, int i)
+int	token_expand(t_data *data, char **tmp, char *input, int i)
 {
 	int		j;
 	char	**tmp2;
 
 	j = 0;
-	tmp2 = split_input(input);
+	tmp2 = split_input(data, input);
 	while (tmp2[j])
 	{
 		tmp[i] = remove_quotes(tmp2[j]);
