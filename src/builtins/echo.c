@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:33:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 11:55:02 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:14:57 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,22 @@ void	print_echo(char **cmds, int i)
 				printf("%c", cmds[i][j++]);
 		}
 		i++;
-		if (cmds && cmds[0] && i < input_size(cmds))
+		if (cmds && cmds[0]
+			&& i < input_size(cmds))
 			printf(" ");
 	}
 }
 
 int	read_echo(t_data *data, char **cmds)
 {
-	int	i;
-	int	cmd_args;
-	int	flag;
+	int		i;
+	int		cmd_args;
+	int		flag;
 
 	i = 1;
-	cmd_args = input_size(cmds);
 	flag = 0;
 	data->exit = 0;
+	cmd_args = input_size(cmds);
 	while (cmds[i] && check_flag(cmds[i]))
 	{
 		flag = 1;

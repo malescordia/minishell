@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:30:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/19 17:21:50 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:19:03 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**split_input(t_data *data, char *input)
 }
 
 /* return the length of input until the next whitespace
-	or sparating meta_char */
+	or separating meta_char */
 int	split_words(char *input)
 {
 	int	i;
@@ -71,7 +71,7 @@ char	*split_alloc(t_data *data, char *input, int len)
 	return (tmp);
 }
 
-/* how many words are in input */
+/* how many words does input contain */
 int	count_words(char *input)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:43 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/21 17:45:04 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:12:25 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int	check_input(t_data *data)
 {
-	if (check_quote(data->input) || check_pipe(data->input)
-		|| check_start(data->input) || check_end(data->input)
-		|| check_redir(data->input) || check_double_redir(data->input)
-		|| check_dollar(data->input) || check_order(data->input)
-		|| check_tokens(data->input))
+	if (check_quote(data->input) || check_pipe(data->input) || check_start(data->input) \
+		|| check_end(data->input) || check_redir(data->input) \
+		|| check_double_redir(data->input) || check_dollar(data->input) \
+		|| check_order(data->input) || check_tokens(data->input))
 	{
 		free(data->input);
 		data->exit = 2;
@@ -52,8 +51,8 @@ int	check_tokens(char *input)
 	{
 		if (check_char(input[i]) == 3)
 			i += ignore_quotes(input, i);
-		if (i < (int)ft_strlen(input) && (input[i] == '&' || input[i] == '('
-				|| input[i] == ')' || input[i] == ';'))
+		if (i < (int)ft_strlen(input) && (input[i] == '&' || input[i] == '(' \
+			|| input[i] == ')' || input[i] == ';'))
 			c = input[i];
 		i++;
 	}
@@ -65,7 +64,7 @@ int	check_tokens(char *input)
 /* checks for $$ and for single quotes */
 int	check_dollar(char *input)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (input && input[i])
@@ -98,16 +97,18 @@ int	check_double_redir(char *input)
 	len = ft_strlen(input) - 1;
 	while (i < len)
 	{
-		while (i < len && check_char(input[i]) != 3 && input[i] != '>'
-			&& input[i] != '<')
+		while (i < len && check_char(input[i]) != 3 && input[i] != '>' \
+				&& input[i] != '<')
 			i++;
 		if (i < len && input[i] && check_char(input[i]) == 3)
 			i = ignore_quotes(input, i);
-		if (i < len && input[i] && (input[i] == '>' || input[i] == '<'))
+		if (i < len && input[i] && i < len && (input[i] == '>'
+				|| input[i] == '<'))
 		{
 			redir = input[i];
 			if (i < len && input[i + 1] == redir && (input[i + 2] == '|'
-					|| (input[i + 2] == ' ' && input[i + 3] == '|')))
+					|| (input[i + 2] == ' ' \
+					&& input[i + 3] == '|')))
 				return (print_token_message('|'));
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:01:41 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/19 17:35:03 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:11:46 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_quote(char *input)
 				i++;
 			if (!input[i])
 			{
-				ft_putstr_fd("error: unclosed quote\n", 2);
+				ft_putstr_fd("error: unclosed quote\n", STDERR_FILENO);
 				return (1);
 			}
 		}
@@ -38,10 +38,11 @@ int	check_quote(char *input)
 	return (0);
 }
 
+
 /* checks for || and |  | */
 int	check_pipe(char *input)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (input && input[i])
@@ -70,7 +71,8 @@ int	check_end(char *input)
 	i = ft_strlen(input) - 1;
 	while (i >= 0)
 	{
-		if (input[i] && check_char(input[i]) == 2)
+		if (input[i] && (input[i] == '<' || input[i] == '>'
+				|| input[i] == '|'))
 			return (write(2, "error: unexpected token 'newline'\n", 34));
 		else if (check_char(input[i]) == 1)
 			i--;
@@ -90,16 +92,16 @@ int	check_redir(char *input)
 	len = ft_strlen(input) - 1;
 	while (i < len && input[i])
 	{
-		while (input[i] && input[i] != '>' && input[i] != '<'
+		while (input[i] && input[i] != '>' && input[i] != '<' \
 			&& check_char(input[i]) != 3)
 			i++;
 		if (i < len && input[i] && check_char(input[i]) == 3)
 			i = ignore_quotes(input, i);
-		if (i < len && input[i] && input[i + 1] && (input[i] == '>' && input[i \
-				+ 1] == '<'))
+		if (i < len && input[i] && input[i + 1] && (input[i] == '>' \
+				&& input[i + 1] == '<'))
 			return (print_token_message(input[i + 1]));
-		if (i < len && input[i] && input[i + 1] && (input[i] == '<' && input[i \
-				+ 1] == '|'))
+		if (i < len && input[i] && input[i + 1] && (input[i] == '<' \
+				&& input[i + 1] == '|'))
 			return (print_token_message(input[i + 1]));
 		i++;
 	}
@@ -116,7 +118,7 @@ int	check_order(char *input)
 	len = ft_strlen(input) - 1;
 	while (i < len)
 	{
-		while (input[i] && input[i] != '<' && input[i] != '>'
+		while (input[i] && input[i] != '<' && input[i] != '>' \
 			&& check_char(input[i]) != 3)
 			i++;
 		if (input[i] && i < len && check_char(input[i]) == 3)

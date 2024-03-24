@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:40:48 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 17:34:01 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:06:04 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 /* stat is used to validate if the cmd is a file and
 	fcheck if it isnt a directory */
-int	is_usable(t_data *data, char *cmd, char *cmd_path, char **paths)
+int	is_usable(t_data *data, char	*cmd, char *cmd_path, char **paths)
 {
 	struct stat	path_stat;
 
 	stat(cmd_path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode) != 0)
 	{
-		ft_putstr_fd("error: ", 2);
-		ft_putstr_fd(cmd, 2);
-		ft_putstr_fd(": is a directory\n", 2);
+		ft_putstr_fd("error: ", STDERR_FILENO);
+		ft_putstr_fd(cmd, STDERR_FILENO);
+		ft_putstr_fd(": Is a directory\n", STDERR_FILENO);
 		data->exit = 126;
 	}
 	else if (access(cmd_path, X_OK) == 0)
@@ -33,7 +33,7 @@ int	is_usable(t_data *data, char *cmd, char *cmd_path, char **paths)
 	}
 	else if (access(cmd_path, X_OK) != 0)
 	{
-		perror("access");
+		perror("error: access:");
 		data->exit = 126;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:23:38 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 11:58:11 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:22:34 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*value_cmp(char *env, char *value)
 	return (NULL);
 }
 
+/* equivalent to "env | grep var" */
 char	*env_grep_value(t_list *env, char *value)
 {
 	t_list	*tmp;

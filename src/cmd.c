@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:02:57 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 12:18:26 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 21:55:50 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	find_next_cmd(char **input, int i)
 {
-	while (input[i] && input[i][0] && ft_strcmp(input[i], "|") != 0)
+	while (input[i] && input[i][0] && ft_strcmp(input[i], "|") \
+		!= 0)
 		i++;
 	if (input[i] && input[i][0] && ft_strcmp(input[i], "|") == 0)
 		i++;
@@ -22,7 +23,7 @@ int	find_next_cmd(char **input, int i)
 }
 
 /* returns how many valid cmds there are in main_input */
-int	get_cmds_nb(char **input)
+int	get_nb_of_cmds(char **input)
 {
 	int	i;
 	int	n;
@@ -40,7 +41,7 @@ int	get_cmds_nb(char **input)
 	return (n);
 }
 
-int	get_args_nb(char **input, int i)
+int	get_nb_of_args(char **input, int i)
 {
 	int	j;
 	int	count;

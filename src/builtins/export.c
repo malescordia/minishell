@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:05 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 13:29:31 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:28:51 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	**init_export(t_data *data)
 	t_list	*env_buffer;
 
 	i = 0;
-	export = malloc(sizeof(export));
+	export = (t_list **)malloc(sizeof(export));
 	if (!export)
 		malloc_error(data);
 	*export = NULL;
@@ -80,7 +80,7 @@ char	*export_input(char *input)
 	return (buffer2);
 }
 
-/* checks if there is str already in export lsit */
+/* checks if there is str already in export list */
 int	export_override(char *input, t_list **export)
 {
 	char	*buffer;
@@ -90,12 +90,10 @@ int	export_override(char *input, t_list **export)
 	buffer = export_input(input);
 	while (tmp)
 	{
-		if (!ft_strchr(buffer, '=') && ft_strcmp_nochr(buffer, tmp->content,
-				'=') == 0)
+		if (!ft_strchr(buffer, '=') && ft_strcmp_nochr(buffer, tmp->content, '=') == 0)
 			break ;
-		if (ft_strcmp_chr(tmp->content, buffer, '=') == 0
-			|| (!ft_strchr(tmp->content, '=') && ft_strcmp_nochr(tmp->content,
-					buffer, '=') == 0))
+		if (ft_strcmp_chr(tmp->content, buffer, '=') == 0 || (!ft_strchr(tmp->content, '=') \
+			&& ft_strcmp_nochr(tmp->content, buffer, '=') == 0))
 		{
 			free(tmp->content);
 			tmp->content = ft_strdup(buffer);
@@ -109,6 +107,7 @@ int	export_override(char *input, t_list **export)
 	return (1);
 }
 
+/* export creates a new env variable */
 void	read_export(t_data *data, char **input)
 {
 	int		i;

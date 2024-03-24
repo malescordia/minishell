@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:31:08 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/18 17:19:05 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:35:49 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ char	*read_heredoc(t_data *data, char *limiter, int here_num)
 	else
 	{
 		wait(&status);
-		if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == (128 \
-				+ SIGINT))
+		if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == (128 + \
+			SIGINT))
 		{
 			g_signal = SIGINT;
 			unlink(filename);
@@ -96,7 +96,7 @@ void	child_heredoc(t_data *data, char *filename, char *limiter)
 	if (line)
 		free(line);
 	close(fd);
-	free(output);
+	free_heredoc(data);
 }
 
 char	*output_heredoc(t_data *data, char *limiter, char *line)

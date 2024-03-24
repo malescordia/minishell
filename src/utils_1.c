@@ -6,13 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:01:07 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 13:43:52 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:24:20 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	**list_to_array(t_list **lst)
+char	**list_to_array(t_data *data, t_list **list)
 {
 	int		i;
 	int		len;
@@ -20,11 +20,11 @@ char	**list_to_array(t_list **lst)
 	char	**buffer;
 
 	i = 0;
-	tmp = *lst;
+	tmp = *list;
 	len = ft_lstsize(tmp);
 	buffer = malloc(sizeof(char *) * (len + 1));
 	if (!buffer)
-		perror("malloc");
+		malloc_error(data);
 	while (tmp && i < len)
 	{
 		buffer[i] = ft_strdup((char *)tmp->content);
@@ -98,17 +98,17 @@ int	list_check_dup(t_list **lst, char *str)
 	return (0);
 }
 
-void	list_swap(t_data *data, t_list *lst)
+void	list_swap(t_data *data, t_list *list)
 {
 	char	*str;
 	t_list	*head;
 	t_list	*tmp;
 
 	str = NULL;
-	head = lst;
+	head = list;
 	if (!head && !head->next)
 	{
-		ft_putstr_fd("error: list swap\n", 2);
+		write(2, "List Swap Error\n", 16);
 		data->exit = 1;
 		return ;
 	}

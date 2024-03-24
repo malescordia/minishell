@@ -6,12 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:27:04 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/19 16:36:14 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:27:34 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/* creates a linked list with env variables */
 t_list	**init_env(char **envp)
 {
 	int		i;
@@ -20,7 +21,7 @@ t_list	**init_env(char **envp)
 	t_list	**env;
 
 	i = 0;
-	env = malloc(sizeof(env));
+	env = (t_list **)malloc(sizeof(env));
 	*env = NULL;
 	while (envp[i])
 	{

@@ -6,12 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:52:25 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 13:31:29 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 21:05:44 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+/* returns a cmd with its flags */
 char	**tokenizer(t_data *data, char **input, int i)
 {
 	int		j;
@@ -19,7 +20,7 @@ char	**tokenizer(t_data *data, char **input, int i)
 	char	**tmp;
 
 	j = 0;
-	args = get_args_nb(input, i);
+	args = get_nb_of_args(input, i);
 	tmp = malloc(sizeof(char *) * (args + 1));
 	if (!tmp)
 		malloc_error(data);
@@ -27,9 +28,9 @@ char	**tokenizer(t_data *data, char **input, int i)
 		i++;
 	while (j < args)
 	{
-		if (input[i] && (ft_strcmp(input[i], ">") == 0 || ft_strcmp(input[i],
-					">>") == 0 || ft_strcmp(input[i], "<") == 0
-				|| ft_strcmp(input[i], "<<") == 0))
+		if (input[i] && (ft_strcmp(input[i], ">") == 0 \
+			|| ft_strcmp(input[i], ">>") == 0 || ft_strcmp(input[i], "<") == 0 \
+			|| ft_strcmp(input[i], "<<") == 0))
 			i += 2;
 		else if (ft_strcmp(input[i], "|") == 0)
 			break ;

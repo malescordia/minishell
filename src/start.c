@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:15:24 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/18 13:31:25 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 21:57:57 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	start(t_data *data)
 {
-	int	i;
-	int	fork_id;
-	int	pipe_fd[2];
-	int	done_cmds;
+	int		i;
+	int		fork_id;
+	int		pipe_fd[2];
+	int		done_cmds;
 
 	i = 0;
 	done_cmds = 0;
@@ -43,11 +43,11 @@ void	start(t_data *data)
 
 void	child_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 {
-	int		i;
+	int			i;
 	t_cmds	*cmds;
 
-	i = done_cmds;
 	cmds = data->cmds;
+	i = done_cmds;
 	signal(SIGPIPE, sig_setup);
 	while (i > 0)
 	{
@@ -56,11 +56,11 @@ void	child_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 	}
 	if (done_cmds != 0)
 	{
-		dup2(data->cmd_in_fd, 0);
+		dup2(data->cmd_in_fd, STDIN_FILENO);
 		close(data->cmd_in_fd);
 	}
 	if (done_cmds < data->nb_of_cmds - 1)
-		dup2(pipe_fd[1], 1);
+		dup2(pipe_fd[1], STDOUT_FILENO);
 	close(pipe_fd[1]);
 	close(pipe_fd[0]);
 	if (data->nb_of_cmds == 1 && is_builtin(cmds->args[0]))
@@ -71,7 +71,7 @@ void	child_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 
 void	parent_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 {
-	int		i;
+	int			i;
 	t_cmds	*cmds;
 
 	i = done_cmds;
@@ -80,8 +80,8 @@ void	parent_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 		cmds = cmds->next;
 	if (data->nb_of_cmds == 1)
 	{
-		if (is_builtin(cmds->args[0]) && redir_set(data, data->main_input,
-				position, 0) == 0)
+		if (is_builtin(cmds->args[0]) && redir_set(data, data->main_input, position, 0) \
+			== 0)
 		{
 			close(pipe_fd[0]);
 			close(pipe_fd[1]);
@@ -98,11 +98,13 @@ void	parent_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 	signal(SIGINT, sig_setup);
 }
 
+
 void	get_exit_status(t_data *data, int fork_id, int done_cmds)
 {
 	int	status;
 
-	if (data->nb_of_cmds == 1 && is_builtin(data->cmds->args[0]) == 1)
+	if (data->nb_of_cmds == 1 && is_builtin(data->cmds->args[0]) \
+		== 1)
 	{
 		wait(&status);
 		reset_fds(data);

@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:37:52 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/18 16:32:55 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:34:45 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	signal_heredoc(int signum)
 	{
 		g_signal = SIGINT;
 		printf("\n");
-		close(0);
+		close(STDIN_FILENO);
 	}
 }
 

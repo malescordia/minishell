@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:15:24 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/18 11:52:35 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:09:02 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	execute(t_data *data, char **cmds)
 	char	**env;
 
 	if (!cmds || !cmds[0] || !cmds[0][0])
-		ft_putstr_fd("error: command not found\n", 2);
+		write(STDERR_FILENO, "error: '': command not found\n", 29);
 	if (is_builtin(cmds[0]))
 		read_builtin(data, cmds, 0);
 	if (g_signal == SIGPIPE)
@@ -33,7 +33,7 @@ void	execute(t_data *data, char **cmds)
 	free_array(paths);
 	if (!cmd_path)
 		free_data(data);
-	env = list_to_array(data->env);
+	env = list_to_array(data, data->env);
 	execve(cmd_path, cmds, env);
 	free(cmd_path);
 	data->exit = errno;
@@ -42,12 +42,12 @@ void	execute(t_data *data, char **cmds)
 
 char	**get_paths(t_list **env, char *cmd)
 {
+	int		i;
 	t_list	*tmp;
 	char	**paths;
 	char	**path_dir;
-	int		i;
 
-	if (ft_strncmp(cmd, "../", 3) == 0 || ft_strncmp(cmd, "./", 2) == 0
+	if (ft_strncmp(cmd, "../", 3) == 0 || ft_strncmp(cmd, "./", 2) == 0 \
 		|| cmd[0] == '/')
 		return (special_path(cmd));
 	tmp = *env;
@@ -113,9 +113,9 @@ char	*get_cmd_path(t_data *data, char **paths, char *cmd)
 		perror(cmd);
 	else if (ft_strcmp(cmd, "\'\'") != 0 && ft_strcmp(cmd, "\"\"") != 0)
 	{
-		write(2, "error: ", 7);
-		ft_putstr_fd(cmd, 2);
-		write(2, ": command not found\n", 21);
+		write(STDERR_FILENO, "error: ", 7);
+		ft_putstr_fd(cmd, STDERR_FILENO);
+		write(STDERR_FILENO, ": command not found\n", 20);
 	}
 	return (NULL);
 }

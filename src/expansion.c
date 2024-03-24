@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:58:45 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 13:30:29 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:53:46 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char	**expander(t_data *data)
 		if (!ft_strchr(data->main_input[arr_index], '$'))
 		{
 			new_input[new_index] = ft_strdup(data->main_input[arr_index]);
-			arr_index++;
 			new_index++;
+			arr_index++;
 			continue ;
 		}
 		value = get_value(data, data->main_input[arr_index++]);
@@ -42,18 +42,20 @@ char	**expander(t_data *data)
 	return (new_input);
 }
 
+/* replaces an env variable with its value */
 char	*substitute_value(t_data *data, char *result, char quotes, int i)
 {
 	char	*value;
-	char	*buffer;
 	char	*tmp;
+	char	*buffer;
 
 	value = NULL;
-	buffer = NULL;
 	tmp = NULL;
+	buffer = NULL;
 	tmp = ft_strndup(result, i);
 	if (!(check_char(result[i + 1]) == 3 && !quotes))
-		buffer = ft_strndup(result + i, get_value_len(result + i));
+		buffer = ft_strndup(result + i, \
+		get_value_len(result + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		value = ft_strdup(buffer);
 	else if (buffer)
@@ -77,9 +79,9 @@ char	*get_value(t_data *data, char *str)
 	char	quotes;
 	char	*result;
 
-	i = 0;
 	len = 0;
 	quotes = '\0';
+	i = 0;
 	result = ft_strdup(str);
 	while (result && result[i])
 	{
@@ -98,7 +100,7 @@ char	*get_value(t_data *data, char *str)
 	return (result);
 }
 
-int	get_index(t_data *data, char *result, char quotes, int i)
+int	get_index(t_data *ms, char *result, char quotes, int i)
 {
 	int		j;
 	char	*value;
@@ -108,11 +110,12 @@ int	get_index(t_data *data, char *result, char quotes, int i)
 	buffer = NULL;
 	j = 0;
 	if (!(check_char(result[i + 1]) == 3 && !quotes))
-		buffer = ft_strndup(result + i, get_value_len(result + i));
+		buffer = ft_strndup(result + i, \
+		get_value_len(result + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		value = ft_strdup(buffer);
 	else if (buffer)
-		value = value_iter(data, buffer + 1);
+		value = value_iter(ms, buffer + 1);
 	j = ft_strlen(value);
 	free(buffer);
 	free(value);

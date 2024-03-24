@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/19 17:52:24 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:33:17 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,16 +117,19 @@ char				*value_cmp(char *env, char *value);
 char				*value_iter(t_data *data, char *value);
 char				*env_grep_value(t_list *env, char *value);
 
-/* free */
+/* free_1 */
 int					free_array(char **arr);
 void				free_list(t_list **lst);
 void				free_cmds(t_cmds *cmds);
 void				free_data(t_data *data);
 void				free_list_malloc(t_list **list);
 
+/* free_2 */
+void				free_heredoc(t_data *data);
+
 /* cmd */
-int					get_cmds_nb(char **input);
-int					get_args_nb(char **input, int i);
+int					get_nb_of_cmds(char **input);
+int					get_nb_of_args(char **input, int i);
 t_cmds				*create_node(t_data *data, int i);
 int					find_next_cmd(char **input, int i);
 
@@ -172,11 +175,11 @@ char				**get_paths(t_list **env, char *cmd);
 char				*get_cmd_path(t_data *data, char **paths, char *cmd);
 
 /* utils_1 */
-char				**list_to_array(t_list **lst);
 void				list_swap(t_data *data, t_list *lst);
 int					list_check_dup(t_list **lst, char *str);
 void				list_remove(t_list **list, int position);
 void				list_sort(t_data *data, t_list **export);
+char				**list_to_array(t_data *data, t_list **list);
 
 /* utils_2 */
 void				list_print(t_list **lst);

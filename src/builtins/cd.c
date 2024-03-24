@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:03:57 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 11:59:14 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:21:32 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	cd_home(t_data *data)
 	home = ft_strtrim(env_grep_value(*data->env, "HOME="), "HOME=");
 	if (!home)
 	{
-		ft_putstr_fd("error: cd: HOME is undefined\n", 2);
-		exit(1);
+		write(2, "error: cd: HOME is undefined\n", 29);
+		exit (1);
 	}
 	else if (chdir(home) != 0)
 	{
 		perror("cd");
-		exit(1);
+		exit (1);
 	}
 	else
 		data->exit = 0;
@@ -61,7 +61,7 @@ void	read_cd(t_data *data, char **path)
 	getcwd(old_pwd, sizeof(old_pwd));
 	if (path && input_size(path) > 2)
 	{
-		ft_putstr_fd("error: cd: too many arguments\n", 2);
+		write(2, "error: cd: too many arguments\n", 30);
 		ft_bzero(old_pwd, ft_strlen(old_pwd));
 		data->exit = 1;
 		return ;

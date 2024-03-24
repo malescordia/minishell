@@ -6,13 +6,14 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:40:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/18 13:43:01 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:00:38 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-unsigned long long int	exit_atoull(const char *str)
+/* converts a char * to an unsigned long long int */
+unsigned long long int	ft_atoulli(const char *str)
 {
 	unsigned long long	n;
 	unsigned long long	i;
@@ -85,9 +86,9 @@ void	read_exit(t_data *data, char **cmds, int parent)
 {
 	if (input_size(cmds) >= 2 && cmds[1] && cmds[1][0])
 	{
-		if (exit_format_error(cmds[1]) || (ft_strchr(cmds[1], '-')
-				&& exit_atoull(cmds[1]) > (unsigned long long)(LLONG_MAX) + 1)
-			|| exit_atoull(cmds[1]) > (unsigned long long)(LLONG_MAX))
+		if (exit_format_error(cmds[1]) || (ft_strchr(cmds[1], '-') \
+			&& ft_atoulli(cmds[1]) > (unsigned long long)(LLONG_MAX) + 1) \
+			|| ft_atoulli(cmds[1]) > (unsigned long long)(LLONG_MAX))
 		{
 			ft_putstr_fd("error: exit: ", 2);
 			ft_putstr_fd(cmds[1], 2);
@@ -95,8 +96,8 @@ void	read_exit(t_data *data, char **cmds, int parent)
 			data->exit = 2;
 			free_data(data);
 		}
-		else if (0 <= ft_atoi(cmds[1]) && exit_atoull(cmds[1]) <= 255)
-			data->exit = (int)exit_atoull(cmds[1]);
+		else if (0 <= ft_atoi(cmds[1]) && ft_atoulli(cmds[1]) <= 255)
+			data->exit = (int)ft_atoulli(cmds[1]);
 		else
 			data->exit = other_exit_status(cmds[1]);
 	}
