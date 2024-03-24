@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:26:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 21:49:22 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:39:00 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_cmds	*init_cmds(t_data *data)
 {
 	int			i;
 	int			n;
-	t_cmds	*current;
-	t_cmds	*cmds;
+	t_cmds		*current;
+	t_cmds		*cmds;
 
 	i = 0;
 	n = 0;

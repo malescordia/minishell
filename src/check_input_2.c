@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:01:41 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 15:11:46 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:40:52 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	check_quote(char *input)
 	}
 	return (0);
 }
-
 
 /* checks for || and |  | */
 int	check_pipe(char *input)

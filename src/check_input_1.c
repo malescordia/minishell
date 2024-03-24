@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:43 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 15:12:25 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:40:41 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	check_input(t_data *data)
 {
-	if (check_quote(data->input) || check_pipe(data->input) || check_start(data->input) \
-		|| check_end(data->input) || check_redir(data->input) \
-		|| check_double_redir(data->input) || check_dollar(data->input) \
-		|| check_order(data->input) || check_tokens(data->input))
+	if (check_quote(data->input) || check_pipe(data->input) || \
+		check_start(data->input) || check_end(data->input) \
+		|| check_redir(data->input) || check_double_redir(data->input) \
+		|| check_dollar(data->input) || check_order(data->input) \
+		|| check_tokens(data->input))
 	{
 		free(data->input);
 		data->exit = 2;

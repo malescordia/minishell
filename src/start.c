@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:15:24 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/24 21:57:57 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:39:55 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	start(t_data *data)
 void	child_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 {
 	int			i;
-	t_cmds	*cmds;
+	t_cmds		*cmds;
 
 	cmds = data->cmds;
 	i = done_cmds;
@@ -72,7 +72,7 @@ void	child_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 void	parent_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 {
 	int			i;
-	t_cmds	*cmds;
+	t_cmds		*cmds;
 
 	i = done_cmds;
 	cmds = data->cmds;
@@ -80,8 +80,8 @@ void	parent_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 		cmds = cmds->next;
 	if (data->nb_of_cmds == 1)
 	{
-		if (is_builtin(cmds->args[0]) && redir_set(data, data->main_input, position, 0) \
-			== 0)
+		if (is_builtin(cmds->args[0]) && redir_set(data, data->main_input, \
+			position, 0) == 0)
 		{
 			close(pipe_fd[0]);
 			close(pipe_fd[1]);
@@ -97,7 +97,6 @@ void	parent_exec(t_data *data, int *pipe_fd, int done_cmds, int position)
 	close(pipe_fd[1]);
 	signal(SIGINT, sig_setup);
 }
-
 
 void	get_exit_status(t_data *data, int fork_id, int done_cmds)
 {

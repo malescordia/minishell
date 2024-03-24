@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:05 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:28:51 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:42:03 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,12 @@ int	export_override(char *input, t_list **export)
 	buffer = export_input(input);
 	while (tmp)
 	{
-		if (!ft_strchr(buffer, '=') && ft_strcmp_nochr(buffer, tmp->content, '=') == 0)
+		if (!ft_strchr(buffer, '=') && ft_strcmp_nochr(buffer, tmp->content, \
+			'=') == 0)
 			break ;
-		if (ft_strcmp_chr(tmp->content, buffer, '=') == 0 || (!ft_strchr(tmp->content, '=') \
-			&& ft_strcmp_nochr(tmp->content, buffer, '=') == 0))
+		if (ft_strcmp_chr(tmp->content, buffer, '=') == 0 || \
+			(!ft_strchr(tmp->content, '=') && ft_strcmp_nochr(tmp->content, \
+			buffer, '=') == 0))
 		{
 			free(tmp->content);
 			tmp->content = ft_strdup(buffer);
