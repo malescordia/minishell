@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:40:58 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/25 14:02:47 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:25:15 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,6 @@
 LENGTH OF A FILE PATH ON THE CURRENT SYSTEM */
 
 int		g_signal = 0;
-
-/* TESTERS */
-void	print_cmds(t_cmds *cmds)
-{
-	char	**args;
-
-	while (cmds != NULL)
-	{
-		args = cmds->args;
-		while (*args != NULL)
-		{
-			printf("%s ", *args);
-			args++;
-		}
-		printf("\n");
-		cmds = cmds->next;
-	}
-}
-/* TESTERS */
 
 int	print_token_message(char token)
 {

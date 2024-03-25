@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/25 14:01:33 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:25:31 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/stat.h>
-# include <sys/types.h>
 # include <sys/wait.h>
 # include <termios.h>
-# include <term.h>
-# include <curses.h>
 # include <unistd.h>
 
 # define RED "\033[31m"
