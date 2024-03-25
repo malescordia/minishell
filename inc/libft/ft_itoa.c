@@ -6,60 +6,50 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:13:28 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 19:28:58 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:15:43 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_length(int n)
+size_t	ft_intsize(int x)
 {
-	int	i;
+	size_t	count;
 
-	i = 0;
-	if (n < 0)
+	count = 0;
+	if (x <= 0)
+		count++;
+	while (x)
 	{
-		n *= -1;
-		i++;
+		x = x / 10;
+		count++;
 	}
-	while (n > 0)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*get_str(int n, char *str, int len)
-{
-	while (n > 0)
-	{
-		str[len - 1] = (n % 10) + '0';
-		n /= 10;
-		len--;
-	}
-	return (str);
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		len;
+	char		*s;
+	long int	nb;
+	int			i;
 
-	if (n == 0)
+	nb = (long)n;
+	i = ft_intsize(nb);
+	s = (char *)malloc(sizeof(char) * (i + 1));
+	if (!s)
+		return (0);
+	s[i] = '\0';
+	if (nb == 0)
+		s[0] = '0';
+	if (nb < 0)
 	{
-		str = ft_strdup("0");
-		return (str);
+		s[0] = '-';
+		nb = nb * -1;
 	}
-	len = get_length(n);
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	if (n < 0)
+	while (nb > 0)
 	{
-		str[0] = '-';
-		n *= -1;
+		s[--i] = '0' + (nb % 10);
+		nb = nb / 10;
 	}
-	str = get_str(n, str, len);
-	return (str);
+	return (s);
 }

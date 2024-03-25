@@ -6,12 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:13:32 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/02/22 09:15:27 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:35:43 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/* compares s1 and s2 until s2 reaches c, including c */
 int	ft_strcmp_chr(char *s1, char *s2, char c)
 {
 	int	i;

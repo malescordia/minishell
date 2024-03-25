@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 13:39:02 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/01/07 15:32:21 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:52:16 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,22 @@
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char	*str;
+	char	*new;
+	int		i;
+	int		j;
 
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
+	i = 0;
+	j = 0;
+	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!new)
+		return (0);
+	while (s1 && s1[i])
 	{
-		free(str);
-		return (NULL);
+		new[i] = s1[i];
+		i++;
 	}
-	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
-	ft_strlcat(&str[ft_strlen(s1)], s2, ft_strlen(s2) + 1);
-	return (str);
+	while (s2 && s2[j])
+		new[i++] = s2[j++];
+	new[i] = '\0';
+	return (new);
 }

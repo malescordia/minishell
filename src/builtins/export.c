@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:05 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:42:03 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:46:06 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	export_error(t_data *data, char *input)
 }
 
 /* takes input and creates new string in specific format */
+/* "declare -x variablename=variablevalue" */
 char	*export_input(char *input)
 {
 	int		i;

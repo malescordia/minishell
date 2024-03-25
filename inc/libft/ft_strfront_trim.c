@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:15:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/11 18:59:35 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:32:57 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strfront_trim(char *str, char *trim)
 	while (str[j] && ft_strchr(trim, str[j]))
 		j++;
 	i = ft_strlen(str) - j;
-	buf = calloc(sizeof(char), (i + 1));
+	buf = ft_calloc(sizeof(char), (i + 1));
 	if (!buf)
 		return (0);
 	i = 0;

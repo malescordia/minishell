@@ -6,81 +6,81 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:35:43 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/01/07 15:32:03 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:15:33 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_len(const char *str, char c)
-{
-	size_t	i;
-	int		len;
-
-	len = 0;
-	i = 0;
-	if (str[0] != c)
-	{
-		len++;
-		i++;
-	}
-	while (i < ft_strlen(str))
-	{
-		if (str[i] != c && str[i - 1] == c)
-			len++;
-		i++;
-	}
-	return (len);
-}
-
-char	**get_words(char **arr, const char *str, char c, int len)
+int	splitcount(char const *s, char c)
 {
 	int	i;
-	int	j;
-	int	start;
+	int	count;
 
+	count = 1;
 	i = 0;
-	j = 0;
-	while (j < len && str[i])
+	while (s[i])
 	{
-		while (str[i] == c)
-			i++;
-		if (str[i] != c)
+		if (s[i] != c)
 		{
-			start = i;
-			while (str[i] != c && str[i] != 0)
+			count++;
+			while (s[i] && s[i] != c)
 				i++;
-			arr[j] = ft_substr(str, start, i - start);
-			j++;
 		}
+		else
+			i++;
 	}
-	return (arr);
+	return (count);
 }
 
-char	**ft_split(const char *str, char c)
+char	*splitmake(const char *s, char c)
 {
-	char	**arr;
-	int		len;
+	char	*buff;
+	int		i;
 
-	if (!str[0])
-	{
-		arr = malloc(sizeof(char *));
-		if (!arr)
-		{
-			free(arr);
-			return (NULL);
-		}
-		arr[0] = 0;
-		return (arr);
-	}
-	len = get_len(str, c);
-	arr = malloc(sizeof(char *) * (len + 1));
-	if (!arr)
-	{
-		free(arr);
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	buff = (char *) malloc (sizeof(char) * (i + 1));
+	if (!buff)
 		return (NULL);
+	ft_strlcpy(buff, s, i + 1);
+	return (buff);
+}
+
+void	*splitfree(char **buff, int n)
+{
+	while (n > 0)
+		free (buff[--n]);
+	free (buff);
+	return (NULL);
+}
+
+char	**ft_split(char const *str, char c)
+{
+	char	**buff;
+	char	*content;
+	int		i;
+	int		n;
+
+	buff = (char **)malloc(sizeof(char *) * splitcount(str, c));
+	if (!buff)
+		return (NULL);
+	i = 0;
+	n = 0;
+	while (str[i])
+	{
+		if (str[i] != c)
+		{
+			content = splitmake(str + i, c);
+			if (!content)
+				return (splitfree(buff, n));
+			buff[n++] = content;
+			while (str[i + 1] && str[i + 1] != c)
+				i++;
+		}
+		i++;
 	}
-	arr[len] = NULL;
-	get_words(arr, str, c, len);
-	return (arr);
+	buff[n] = NULL;
+	return (buff);
 }

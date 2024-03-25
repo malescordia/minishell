@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:09:17 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/04 18:10:25 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:44:00 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ t_list				*ft_lstnew(void *content);
 
 size_t				ft_strlen(const char *str);
 size_t				ft_strlcat(char *dst, const char *src, size_t len);
-size_t				ft_strlcpy(char *dst, const char *src, size_t len);
+
+unsigned int		ft_strlcpy(char *dest, const char *src, size_t size);
 
 void				ft_printlist(t_list *lst);
 void				ft_putnbr_fd(int n, int fd);
@@ -62,7 +63,7 @@ int					ft_lstsize(t_list *lst);
 int					ft_atoi(const char *str);
 int					ft_strlen_chr(char *str, char c);
 int					ft_strcmp_chr(char *s1, char *s2, char c);
-int					ft_strcmp(const char *s1, const char *s2);
+int					ft_strcmp(char *s1, char *s2);
 int					ft_strcmp_nochr(char *s1, char *s2, char c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 

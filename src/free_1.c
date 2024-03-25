@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:49:51 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:29:48 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:01:48 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ void	free_data(t_data *data)
 	exit_status = data->exit;
 	free(data);
 	rl_clear_history();
-	exit(exit_status);
+	exit (exit_status);
 }

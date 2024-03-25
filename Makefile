@@ -40,4 +40,4 @@ fclean: clean
 re: fclean all
 
 v:
-	@make && valgrind --leak-check=full --show-leak-kinds=all --suppressions=".minishell.sup" ./minishell
+	@make && valgrind --leak-check=full --show-leak-kinds=all --suppressions="readline.sup" ./minishell

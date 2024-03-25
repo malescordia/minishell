@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:29:55 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/01/07 15:23:56 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:15:38 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_putendl_fd(char *str, int fd)
 {
-	write(fd, str, ft_strlen(str));
-	write(fd, "\n", 1);
+	ft_putstr_fd(str, fd);
+	ft_putchar_fd('\n', fd);
 }
