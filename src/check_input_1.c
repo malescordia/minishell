@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:43 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/25 14:01:41 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:38:29 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_tokens(char *input)
 	return (0);
 }
 
-/* checks for $$ and for single quotes */
+/* checks for $$ and handles the dollar case of single quotes */
 int	check_dollar(char *input)
 {
 	int		i;

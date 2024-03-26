@@ -6,14 +6,11 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:40:58 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/25 14:25:15 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:39:24 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-/* PATH_MAX IS DEFINED IN <linux/limits.h> AND REPRESENTS THE MAX
-LENGTH OF A FILE PATH ON THE CURRENT SYSTEM */
 
 int		g_signal = 0;
 

@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:03:02 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 20:54:46 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:39:01 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ char	**input_dup(t_data *data, char **old)
 	return (new);
 }
 
-/* returns 1 if white space */
-/* returns 2 if operator */
-/* returns 3 if quote */
-/* returns 4 if dollar sign */
+/* returns 1 if white space 
+   returns 2 if operator 
+   returns 3 if quote 
+   returns 4 if dollar sign */
 int	check_char(char c)
 {
 	if (c == ' ' || c == '\t')
