@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:01:07 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 17:30:12 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:44:41 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	**list_to_array(t_data *data, t_list **list)
 	return (buffer);
 }
 
+/* sorts the export list in ascending order */
 void	list_sort(t_data *data, t_list **export)
 {
 	t_list	*head;
@@ -57,6 +58,7 @@ void	list_sort(t_data *data, t_list **export)
 	}
 }
 
+/* removes chosen node from the linked list */
 void	list_remove(t_list **list, int position)
 {
 	int		i;
@@ -83,6 +85,7 @@ void	list_remove(t_list **list, int position)
 	free(target);
 }
 
+/* swap function for list_sort */
 void	list_swap(t_data *data, t_list *list)
 {
 	char	*str;

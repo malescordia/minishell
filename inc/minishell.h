@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 17:30:16 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:11:08 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ typedef struct s_cmds
 
 typedef struct s_data
 {
+	t_cmds			*cmds;
 	t_list			**env;
 	t_list			**export;
-	t_cmds			*cmds;
 	int				exit;
-	int				nb_of_cmds;
-	int				cmd_in_fd;
 	int				fd_in;
 	int				fd_out;
+	int				cmd_in_fd;
+	int				nb_of_cmds;
 	char			*input;
 	char			**main_input;
 }					t_data;
@@ -57,10 +57,10 @@ t_list				**init_env(char **envp);
 t_list				**init_export(t_data *data);
 
 void				sig_init(void);
-void				minishell(t_data *data);
-void				sig_setup(int signum);
 void				change_terminal(void);
+void				sig_setup(int signum);
 void				read_pwd(t_data *data);
+void				minishell(t_data *data);
 void				signal_stop(int signum);
 void				free_list(t_list **lst);
 void				free_cmds(t_cmds *cmds);
@@ -106,11 +106,11 @@ int					input_size(char **input);
 int					check_quote(char *input);
 int					check_redir(char *input);
 int					count_words(char *input);
-int					get_variable_len(char *str);
 int					split_words(char *input);
 int					check_input(t_data *data);
 int					check_tokens(char *input);
 int					check_dollar(char *input);
+int					get_variable_len(char *str);
 int					get_nb_of_quotes(char *str);
 int					get_nb_of_cmds(char **input);
 int					parse_env(char *input, int i);
@@ -140,9 +140,9 @@ int					redir_set(t_data *data, char **main_input, int position,
 char				*remove_quotes(char *str);
 char				*export_input(char *input);
 char				*filename_init(int here_num);
-char				*compare_value(char *env, char *value);
 char				*get_value(t_data *data, char *str);
 char				*find_value(t_data *data, char *value);
+char				*compare_value(char *env, char *value);
 char				*env_grep_value(t_list *env, char *value);
 char				*split_alloc(t_data *data, char *input, int len);
 char				*get_cmd_path(t_data *data, char **paths, char *cmd);
