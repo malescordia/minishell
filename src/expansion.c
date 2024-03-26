@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:58:45 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 14:34:38 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:52:05 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**expander(t_data *data)
 	return (new_input);
 }
 
-/* replaces an env variable with its value */
+/* continuation of get_value function */
 char	*substitute_value(t_data *data, char *result, char quotes, int i)
 {
 	char	*value;
@@ -72,6 +72,7 @@ char	*substitute_value(t_data *data, char *result, char quotes, int i)
 	return (result);
 }
 
+/* replaces an env variable with its value */
 char	*get_value(t_data *data, char *str)
 {
 	int		i;
@@ -100,7 +101,7 @@ char	*get_value(t_data *data, char *str)
 	return (result);
 }
 
-int	get_index(t_data *ms, char *result, char quotes, int i)
+int	get_index(t_data *data, char *result, char quotes, int i)
 {
 	int		j;
 	char	*value;
@@ -115,7 +116,7 @@ int	get_index(t_data *ms, char *result, char quotes, int i)
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		value = ft_strdup(buffer);
 	else if (buffer)
-		value = value_iter(ms, buffer + 1);
+		value = value_iter(data, buffer + 1);
 	j = ft_strlen(value);
 	free(buffer);
 	free(value);

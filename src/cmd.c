@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:02:57 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 15:22:04 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:29:40 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	get_nb_of_cmds(char **input)
 	return (n);
 }
 
+/* returns the amount of args the specified cmd has,
+   it stops once if finds a pipe */
 int	get_nb_of_args(char **input, int i)
 {
 	int	count;
