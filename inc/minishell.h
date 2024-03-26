@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 13:28:12 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:40:14 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@
 # include <sys/wait.h>
 # include <termios.h>
 # include <unistd.h>
-
-# define RED "\033[31m"
-# define GREEN "\033[32m"
-# define YELLOW "\033[33m"
-# define PURPLE "\033[35m"
-# define BLUE "\033[36m"
-# define R "\033[0m" /* reset colors */
 
 extern int			g_signal;
 

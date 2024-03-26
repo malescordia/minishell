@@ -6,13 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:30:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 15:19:03 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:45:13 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-/* splits input into an array of char * */
+/* splits input into 2D array */
 char	**split_input(t_data *data, char *input)
 {
 	int		i;

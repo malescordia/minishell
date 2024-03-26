@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:58:45 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 20:53:46 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:34:38 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ int	get_index(t_data *ms, char *result, char quotes, int i)
 	return (j);
 }
 
-/* if $? return 2 */
-/* if $3 replace with NULL */
-/* while str[i] is alphanumerical or '_' i++ */
+/* if $? return 2 
+   if $3 replace with NULL 
+   while str[i] is alphanumerical or '_' i++ */
 int	get_value_len(char *str)
 {
 	int	i;
