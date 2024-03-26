@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 16:17:01 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:06:23 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_list				**init_env(char **envp);
 t_list				**init_export(t_data *data);
 
 void				sig_init(void);
-void				start(t_data *data);
+void				minishell(t_data *data);
 void				sig_setup(int signum);
 void				change_terminal(void);
 void				read_pwd(t_data *data);
