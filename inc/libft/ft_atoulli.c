@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_atoulli.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 17:41:40 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 19:11:00 by gude-cas         ###   ########.fr       */
+/*   Created: 2024/03/26 19:16:54 by gude-cas          #+#    #+#             */
+/*   Updated: 2024/03/26 19:17:05 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "libft.h"
 
-/* prints cwd and resets all elements of it to zero */
-void	read_pwd(t_data *data)
+unsigned long long int	ft_atoulli(const char *str)
 {
-	char	cwd[PATH_MAX + 1];
+	unsigned long long	n;
+	unsigned long long	i;
 
-	ft_bzero(cwd, PATH_MAX + 1);
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
+	i = 0;
+	n = 0;
+	while (str[i])
 	{
-		printf("%s\n", getcwd(cwd, sizeof(cwd)));
-		ft_bzero(cwd, ft_strlen(cwd));
+		if (str[i] == '\'' || str[i] == '\"')
+			i++;
+		else if (str[i] == '-' || str[i] == '+')
+			i++;
+		else if (str[i] >= '0' && str[i] <= '9')
+		{
+			n = (n * 10) + (str[i] - '0');
+			i++;
+		}
 	}
-	else
-	{
-		perror("pwd");
-		data->exit = errno;
-		return ;
-	}
-	data->exit = 0;
+	return (n);
 }

@@ -6,12 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:33:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:41:10 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:28:43 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/* checks for '-n' */
 int	check_flag(char *str)
 {
 	int	i;
@@ -27,6 +28,7 @@ int	check_flag(char *str)
 	return (1);
 }
 
+/* prints content after i */
 void	print_echo(char **cmds, int i)
 {
 	int	j;
@@ -46,6 +48,7 @@ void	print_echo(char **cmds, int i)
 	}
 }
 
+/* echo executor */
 int	read_echo(t_data *data, char **cmds)
 {
 	int		i;

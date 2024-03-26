@@ -6,34 +6,11 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:40:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/23 17:00:38 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:20:55 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-/* converts a char * to an unsigned long long int */
-unsigned long long int	ft_atoulli(const char *str)
-{
-	unsigned long long	n;
-	unsigned long long	i;
-
-	i = 0;
-	n = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-			i++;
-		else if (str[i] == '-' || str[i] == '+')
-			i++;
-		else if (str[i] >= '0' && str[i] <= '9')
-		{
-			n = (n * 10) + (str[i] - '0');
-			i++;
-		}
-	}
-	return (n);
-}
 
 /* checks if cmd has any formatting errors: alpha chars, multiple '-'/'+',
 	special chars, '-'/'+' out of place */
