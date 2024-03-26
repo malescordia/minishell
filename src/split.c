@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:30:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 14:45:13 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:12:47 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**split_input(t_data *data, char *input)
 }
 
 /* return the length of input until the next whitespace
-	or separating meta_char */
+   or separating meta_char */
 int	split_words(char *input)
 {
 	int	i;
@@ -55,6 +55,7 @@ int	split_words(char *input)
 	return (i);
 }
 
+/* allocates memory for the 2D array */
 char	*split_alloc(t_data *data, char *input, int len)
 {
 	int		i;

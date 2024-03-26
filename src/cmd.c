@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:02:57 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 21:55:50 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:22:04 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,28 @@ int	get_nb_of_cmds(char **input)
 
 int	get_nb_of_args(char **input, int i)
 {
-	int	j;
 	int	count;
 
-	j = i;
 	count = 0;
-	while (input[j] && !input[j][0])
-		j++;
-	while (input[j])
+	while (input[i] && !input[i][0])
+		i++;
+	while (input[i])
 	{
-		if (ft_strcmp(input[j], ">") == 0 || ft_strcmp(input[j], ">>") == 0
-			|| ft_strcmp(input[j], "<") == 0 || ft_strcmp(input[j], "<<") == 0)
-			j += 2;
-		else if (ft_strcmp(input[j], "|") == 0)
+		if (ft_strcmp(input[i], ">") == 0 || ft_strcmp(input[i], ">>") == 0
+			|| ft_strcmp(input[i], "<") == 0 || ft_strcmp(input[i], "<<") == 0)
+			i += 2;
+		else if (ft_strcmp(input[i], "|") == 0)
 			break ;
 		else
 		{
-			count += count_words(input[j]);
-			j++;
+			count += count_words(input[i]);
+			i++;
 		}
 	}
 	return (count);
 }
 
+/* much like ft_lstnew but for cmds list */
 t_cmds	*create_node(t_data *data, int i)
 {
 	t_cmds	*cmds;
