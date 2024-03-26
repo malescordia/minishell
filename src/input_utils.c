@@ -6,12 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:03:02 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 13:49:49 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:22:15 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+/* returns size of input */
 int	input_size(char **input)
 {
 	int	i;
@@ -24,6 +25,7 @@ int	input_size(char **input)
 	return (i);
 }
 
+/* duplicates input so the original is preserved after changes are made */
 char	**input_dup(t_data *data, char **old)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:40:58 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 13:39:24 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:43:01 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	free_all(t_data *data, int ac, char **av)
 		close(data->fd_in);
 	if (data->fd_out != -1)
 		close(data->fd_out);
-	(void)ac;
 	(void)av;
 }
 

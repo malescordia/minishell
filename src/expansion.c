@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:58:45 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 15:52:05 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:17:53 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**expander(t_data *data)
 	return (new_input);
 }
 
-/* continuation of get_value function */
+/* helper for get_value function */
 char	*substitute_value(t_data *data, char *result, char quotes, int i)
 {
 	char	*value;
@@ -55,15 +55,15 @@ char	*substitute_value(t_data *data, char *result, char quotes, int i)
 	tmp = ft_strndup(result, i);
 	if (!(check_char(result[i + 1]) == 3 && !quotes))
 		buffer = ft_strndup(result + i, \
-		get_value_len(result + i));
+		get_variable_len(result + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		value = ft_strdup(buffer);
 	else if (buffer)
-		value = value_iter(data, buffer + 1);
+		value = find_value(data, buffer + 1);
 	free(buffer);
 	buffer = ft_strjoin(tmp, value);
 	free(tmp);
-	tmp = ft_strdup(result + i + get_value_len(result + i));
+	tmp = ft_strdup(result + i + get_variable_len(result + i));
 	free(value);
 	free(result);
 	result = ft_strjoin(buffer, tmp);
@@ -112,11 +112,11 @@ int	get_index(t_data *data, char *result, char quotes, int i)
 	j = 0;
 	if (!(check_char(result[i + 1]) == 3 && !quotes))
 		buffer = ft_strndup(result + i, \
-		get_value_len(result + i));
+		get_variable_len(result + i));
 	if (buffer && ft_strcmp(buffer, "$") == 0)
 		value = ft_strdup(buffer);
 	else if (buffer)
-		value = value_iter(data, buffer + 1);
+		value = find_value(data, buffer + 1);
 	j = ft_strlen(value);
 	free(buffer);
 	free(value);
@@ -125,8 +125,9 @@ int	get_index(t_data *data, char *result, char quotes, int i)
 
 /* if $? return 2 
    if $3 replace with NULL 
-   while str[i] is alphanumerical or '_' i++ */
-int	get_value_len(char *str)
+   while str[i] is alphanumerical or '_' i++ 
+   returns the length of the variables name */
+int	get_variable_len(char *str)
 {
 	int	i;
 

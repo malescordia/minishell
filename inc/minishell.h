@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 13:40:14 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:17:01 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int					input_size(char **input);
 int					check_quote(char *input);
 int					check_redir(char *input);
 int					count_words(char *input);
-int					get_value_len(char *str);
+int					get_variable_len(char *str);
 int					split_words(char *input);
 int					check_input(t_data *data);
 int					check_tokens(char *input);
@@ -141,9 +141,9 @@ int					redir_set(t_data *data, char **main_input, int position,
 char				*remove_quotes(char *str);
 char				*export_input(char *input);
 char				*filename_init(int here_num);
-char				*value_cmp(char *env, char *value);
+char				*compare_value(char *env, char *value);
 char				*get_value(t_data *data, char *str);
-char				*value_iter(t_data *data, char *value);
+char				*find_value(t_data *data, char *value);
 char				*env_grep_value(t_list *env, char *value);
 char				*split_alloc(t_data *data, char *input, int len);
 char				*get_cmd_path(t_data *data, char **paths, char *cmd);

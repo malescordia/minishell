@@ -6,13 +6,14 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:23:38 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:22:34 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:14:58 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	*value_iter(t_data *data, char *value)
+/* find the value of an env variable */
+char	*find_value(t_data *data, char *value)
 {
 	char	*buffer;
 	t_list	*tmp;
@@ -25,7 +26,7 @@ char	*value_iter(t_data *data, char *value)
 	tmp = *data->env;
 	while (tmp)
 	{
-		buffer = value_cmp((char *)tmp->content, value);
+		buffer = compare_value((char *)tmp->content, value);
 		if (buffer)
 			return (buffer);
 		tmp = tmp->next;
@@ -34,7 +35,8 @@ char	*value_iter(t_data *data, char *value)
 	return (NULL);
 }
 
-char	*value_cmp(char *env, char *value)
+/* helper function for find_value */
+char	*compare_value(char *env, char *value)
 {
 	char	*tmp1;
 	char	*tmp2;
