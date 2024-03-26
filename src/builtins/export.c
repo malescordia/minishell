@@ -6,12 +6,14 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:05 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:46:06 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:23:15 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/* a copy of the env variables list to handle the export builtin */
+/* it prepends each variable with "declare -x" */
 t_list	**init_export(t_data *data)
 {
 	int		i;
@@ -39,6 +41,7 @@ t_list	**init_export(t_data *data)
 }
 
 /* checks if export arguments are valid */
+/* checks for anything different from an alphanumeric or a '_' */
 int	export_error(t_data *data, char *input)
 {
 	int	i;
@@ -81,8 +84,8 @@ char	*export_input(char *input)
 	return (buffer2);
 }
 
-/* checks if there is str already in export list */
-int	export_override(char *input, t_list **export)
+/* checks if there is already an env variable with the same name as input */
+int	check_export(char *input, t_list **export)
 {
 	char	*buffer;
 	t_list	*tmp;
@@ -125,7 +128,7 @@ void	read_export(t_data *data, char **input)
 			continue ;
 		}
 		env_override(input[i], data->env);
-		if (export_override(input[i], data->export) == 1)
+		if (check_export(input[i], data->export) == 1)
 		{
 			i++;
 			continue ;
