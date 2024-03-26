@@ -6,14 +6,14 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:05 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 13:27:23 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:18:57 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/* a copy of the env variables list to handle the export builtin */
-/* it prepends each variable with "declare -x" */
+/* a copy of the env variables list to handle the export builtin
+   it prepends each variable with "declare -x" */
 t_list	**init_export(t_data *data)
 {
 	int		i;
@@ -40,8 +40,8 @@ t_list	**init_export(t_data *data)
 	return (export);
 }
 
-/* checks if export arguments are valid */
-/* checks for anything different from an alphanumeric or a '_' */
+/* parses export arguments, checks for anything 
+   different from an alphanumeric or a '_' */
 int	export_error(t_data *data, char *input)
 {
 	int	i;
@@ -58,8 +58,8 @@ int	export_error(t_data *data, char *input)
 	return (0);
 }
 
-/* takes input and creates new string in specific format */
-/* "declare -x variablename=variablevalue" */
+/* takes input and creates new string in specific format
+   "declare -x variablename=variablevalue" */
 char	*export_input(char *input)
 {
 	int		i;
@@ -84,7 +84,8 @@ char	*export_input(char *input)
 	return (buffer2);
 }
 
-/* checks if there is already an env variable with the same name as input */
+/* returns 1 if there is already an env variable with the same name as input
+   returns 0 if it doesn't find a match */
 int	check_export(char *input, t_list **export)
 {
 	char	*buffer;
@@ -113,7 +114,7 @@ int	check_export(char *input, t_list **export)
 	return (1);
 }
 
-/* export creates a new env variable */
+/* creates a new env variable */
 void	read_export(t_data *data, char **input)
 {
 	int		i;

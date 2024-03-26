@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:23:38 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 16:14:58 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:49:47 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ char	*compare_value(char *env, char *value)
 	return (NULL);
 }
 
-/* equivalent to "env | grep var" */
+/* equivalent to 'env | grep var'
+   searches for the defined value and returns its content */
 char	*env_grep_value(t_list *env, char *value)
 {
 	t_list	*tmp;

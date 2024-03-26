@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:16:18 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:11:24 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:11:11 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,14 @@ int	is_builtin(char *str)
 	return (0);
 }
 
+/* prints export values in order unless theres an arg */
 void	export_builtin(t_data *data, char **cmds)
 {
-	if (ft_strcmp(cmds[0], "export") == 0)
-	{
-		list_sort(data, data->export);
-		if (input_size(cmds) > 1)
-			read_export(data, cmds);
-		else
-			list_print(data->export);
-	}
+	list_sort(data, data->export);
+	if (input_size(cmds) > 1)
+		read_export(data, cmds);
+	else
+		list_print(data->export);
 }
 
 void	read_builtin(t_data *data, char **cmds, int parent)

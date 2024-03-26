@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:01:07 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 17:44:41 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:09:34 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ char	**list_to_array(t_data *data, t_list **list)
 	return (buffer);
 }
 
-/* sorts the export list in ascending order */
+/* sorts the export list in ascending order
+   to mimic the behaviour of bash */
 void	list_sort(t_data *data, t_list **export)
 {
 	t_list	*head;

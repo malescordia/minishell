@@ -6,12 +6,13 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:03:57 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:41:05 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:56:07 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/* searches for the HOME env variable and changes to it */
 void	cd_home(t_data *data)
 {
 	char	*home;
@@ -33,6 +34,9 @@ void	cd_home(t_data *data)
 		free(home);
 }
 
+/* updates the PWD and OLDPWD after a successful cd
+   gets the PWD and OLDPWD, stores them in value 
+   and uses export to update them */
 void	cd_env(t_data *data, char *old_pwd)
 {
 	char	pwd[PATH_MAX + 1];
@@ -53,6 +57,8 @@ void	cd_env(t_data *data, char *old_pwd)
 	ft_bzero(pwd, ft_strlen(pwd));
 }
 
+/* stores PWD in old_pwd and in case there is an arg
+   it changes to it */
 void	read_cd(t_data *data, char **path)
 {
 	char	old_pwd[PATH_MAX + 1];
