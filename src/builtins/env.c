@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:27:04 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:27:34 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:27:23 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list	**init_env(char **envp)
 }
 
 /* checks if there is str already in env */
-void	env_override(char *str, t_list **env)
+void	check_env(char *str, t_list **env)
 {
 	t_list	*tmp;
 	t_list	*node;

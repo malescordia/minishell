@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/25 15:42:55 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:28:12 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,32 +66,31 @@ t_list				**init_export(t_data *data);
 void				sig_init(void);
 void				start(t_data *data);
 void				sig_setup(int signum);
+void				change_terminal(void);
 void				read_pwd(t_data *data);
+void				signal_stop(int signum);
 void				free_list(t_list **lst);
 void				free_cmds(t_cmds *cmds);
 void				free_data(t_data *data);
 void				reset_fds(t_data *data);
 void				list_print(t_list **lst);
+void				post_process_signal(void);
+void				signal_exit(t_data *data);
 void				free_heredoc(t_data *data);
 void				malloc_error(t_data *data);
+void				signal_heredoc(int signum);
 void				heredoc_eof(char *limiter);
 void				free_list_malloc(t_list **list);
+void				check_env(char *str, t_list **env);
 void				read_cd(t_data *data, char **path);
 void				execute(t_data *data, char **cmds);
 void				list_swap(t_data *data, t_list *lst);
+void				read_unset(t_data *data, char **cmds);
 void				pipe_error(t_data *data, int *pipe_fd);
 void				fork_error(t_data *data, int *pipe_fd);
+void				read_export(t_data *data, char **input);
 void				list_remove(t_list **list, int position);
 void				list_sort(t_data *data, t_list **export);
-
-void				change_terminal(void);
-void				signal_stop(int signum);
-void				post_process_signal(void);
-void				signal_exit(t_data *data);
-void				signal_heredoc(int signum);
-void				env_override(char *str, t_list **env);
-void				read_unset(t_data *data, char **cmds);
-void				read_export(t_data *data, char **input);
 void				export_builtin(t_data *data, char **cmds);
 void				read_exit(t_data *data, char **cmds, int parent);
 void				read_builtin(t_data *data, char **cmds, int parent);

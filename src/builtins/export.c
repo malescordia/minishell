@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:19:05 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 13:23:15 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:27:23 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	read_export(t_data *data, char **input)
 			i++;
 			continue ;
 		}
-		env_override(input[i], data->env);
+		check_env(input[i], data->env);
 		if (check_export(input[i], data->export) == 1)
 		{
 			i++;
