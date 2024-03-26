@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:52:25 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 21:05:44 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:02:14 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	**tokenizer(t_data *data, char **input, int i)
 	return (tmp);
 }
 
-int	token_expand(t_data *data, char **tmp, char *input, int i)
+/* helper for tokenizer */
+int	token_expand(t_data *data, char **tmp1, char *input, int i)
 {
 	int		j;
 	char	**tmp2;
@@ -50,7 +51,7 @@ int	token_expand(t_data *data, char **tmp, char *input, int i)
 	tmp2 = split_input(data, input);
 	while (tmp2[j])
 	{
-		tmp[i] = remove_quotes(tmp2[j]);
+		tmp1[i] = remove_quotes(tmp2[j]);
 		i++;
 		j++;
 	}

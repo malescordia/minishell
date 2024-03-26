@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:26:46 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:39:00 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:44:29 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	init_data(t_data *data)
 	return (0);
 }
 
+/* creates the cmds list */
 t_cmds	*init_cmds(t_data *data)
 {
 	int			i;
