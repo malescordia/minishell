@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 17:06:23 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:30:16 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ int					ignore_quotes(char *input, int i);
 int					find_next_cmd(char **input, int i);
 int					get_nb_of_args(char **input, int i);
 int					read_echo(t_data *data, char **cmds);
-int					list_check_dup(t_list **lst, char *str);
 int					heredoc_init(t_data *data, char **input);
 int					create_file(t_data *data, char *filename);
 int					parse_quotes(char *input, char quote, int i);

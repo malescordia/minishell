@@ -6,12 +6,14 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:01:07 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:24:20 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:30:12 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+/* converts the copied env list to an array so execve
+   can handle it */
 char	**list_to_array(t_data *data, t_list **list)
 {
 	int		i;
@@ -79,23 +81,6 @@ void	list_remove(t_list **list, int position)
 	tmp->next = target->next;
 	free(target->content);
 	free(target);
-}
-
-int	list_check_dup(t_list **lst, char *str)
-{
-	int		i;
-	t_list	*tmp;
-
-	i = 0;
-	tmp = *lst;
-	while (tmp)
-	{
-		if (ft_strcmp(tmp->content, str) == 0)
-			return (i);
-		tmp = tmp->next;
-		i++;
-	}
-	return (0);
 }
 
 void	list_swap(t_data *data, t_list *list)
