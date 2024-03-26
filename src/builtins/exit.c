@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:40:11 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 19:20:55 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:34:17 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 	special chars, '-'/'+' out of place */
 int	exit_format_error(char *cmd)
 {
-	char	quotes;
 	int		i;
 	int		flag;
+	char	quotes;
 
 	i = 0;
 	quotes = 0;
@@ -38,6 +38,7 @@ int	exit_format_error(char *cmd)
 	return (0);
 }
 
+/* mimics the exit statuses from bash */
 int	other_exit_status(char *cmd)
 {
 	int	n;
@@ -58,7 +59,9 @@ int	other_exit_status(char *cmd)
 }
 
 /* in bash <exit [n]> prints an error if n is larger than LLONG_MAX 
-	or smaller then LLONG_MIN */
+   or smaller then LLONG_MIN.
+   if theres args we bring forth exit_format_error and check if
+   they are correctly formatted */
 void	read_exit(t_data *data, char **cmds, int parent)
 {
 	if (input_size(cmds) >= 2 && cmds[1] && cmds[1][0])
