@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 14:22:19 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/25 13:28:39 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:11:03 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	post_process_signal(void)
 	if (!g_signal)
 		return ;
 	if (g_signal == SIGQUIT)
-		ft_putstr_fd("Quit\n", STDERR_FILENO);
+		ft_putstr_fd("Quit (core dumped)\n", STDERR_FILENO);
 	if (g_signal == SIGINT)
 		printf("\n");
 	g_signal = 0;
