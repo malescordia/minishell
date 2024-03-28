@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:12:52 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 18:11:08 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:31:45 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void				sig_init(void);
 void				change_terminal(void);
 void				sig_setup(int signum);
 void				read_pwd(t_data *data);
-void				minishell(t_data *data);
+void				start_protocol(t_data *data);
 void				signal_stop(int signum);
 void				free_list(t_list **lst);
 void				free_cmds(t_cmds *cmds);

@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:37:52 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/24 15:34:45 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:24:17 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	signal_heredoc(int signum)
 	}
 }
 
+/* modifies the terminal settings to disable the quit character 
+   allows us to input multiple lines */
 void	change_terminal(void)
 {
 	struct termios	term;
@@ -31,7 +33,9 @@ void	change_terminal(void)
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
-char	*filename_init(int here_num)
+/* generates tmp file based on the number of here_docs 
+   increments 'x' according to the number of here_docs */
+char	*filename_init(int nb_of_heredocs)
 {
 	int		i;
 	char	*buffer;
@@ -40,7 +44,7 @@ char	*filename_init(int here_num)
 	i = 0;
 	buffer = NULL;
 	filename = ft_strdup("/tmp/tmpxxx");
-	while (i < here_num)
+	while (i < nb_of_heredocs)
 	{
 		buffer = ft_strdup(filename);
 		free(filename);
@@ -51,6 +55,7 @@ char	*filename_init(int here_num)
 	return (filename);
 }
 
+/* opens the file and returns its fd */
 int	create_file(t_data *data, char *filename)
 {
 	int	fd;

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:15:24 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/26 17:06:23 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:31:45 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	minishell(t_data *data)
+void	start_protocol(t_data *data)
 {
 	int		i;
 	int		fork_id;

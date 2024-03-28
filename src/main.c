@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:40:58 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/26 17:07:11 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:33:01 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av, char **envp)
 			continue ;
 		if (!init_data(data))
 		{
-			minishell(data);
+			start_protocol(data);
 			free_cmds(data->cmds);
 		}
 		free_all(data, ac, av);

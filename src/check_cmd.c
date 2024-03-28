@@ -6,14 +6,14 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:40:48 by gude-cas          #+#    #+#             */
-/*   Updated: 2024/03/24 22:06:04 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:35:51 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 /* stat is used to validate if the cmd is a file and
-	fcheck if it isnt a directory */
+	check if it isnt a directory */
 int	is_usable(t_data *data, char	*cmd, char *cmd_path, char **paths)
 {
 	struct stat	path_stat;

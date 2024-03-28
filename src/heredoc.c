@@ -6,27 +6,27 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:31:08 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/24 15:35:49 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:32:19 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	*read_heredoc(t_data *data, char *limiter, int here_num)
+char	*read_heredoc(t_data *data, char *delimiter, int nb_of_heredocs)
 {
 	char	*filename;
 	int		pid;
 	int		status;
 
 	signal(SIGINT, SIG_IGN);
-	filename = filename_init(here_num);
+	filename = filename_init(nb_of_heredocs);
 	pid = fork();
 	if (pid < 0)
 		fork_error(data, NULL);
 	if (pid == 0)
 	{
 		signal(SIGINT, signal_heredoc);
-		child_heredoc(data, filename, limiter);
+		child_heredoc(data, filename, delimiter);
 	}
 	else
 	{
@@ -41,6 +41,7 @@ char	*read_heredoc(t_data *data, char *limiter, int here_num)
 	return (filename);
 }
 
+/* scans for '<<' and calls read_heredoc with its delimiter */
 int	heredoc_init(t_data *data, char **input)
 {
 	int		i;
@@ -70,7 +71,9 @@ int	heredoc_init(t_data *data, char **input)
 	return (0);
 }
 
-void	child_heredoc(t_data *data, char *filename, char *limiter)
+/* reads lines from the terminal until it finds a delimiter 
+   each line is written to the tmp file */
+void	child_heredoc(t_data *data, char *filename, char *delimiter)
 {
 	int		fd;
 	char	*output;
@@ -85,8 +88,8 @@ void	child_heredoc(t_data *data, char *filename, char *limiter)
 		if (g_signal == SIGINT)
 			data->exit = 128 + SIGINT;
 		else if (!line)
-			heredoc_eof(limiter);
-		output = output_heredoc(data, limiter, line);
+			heredoc_eof(delimiter);
+		output = output_heredoc(data, delimiter, line);
 		if (!output)
 			break ;
 		free(line);
@@ -99,18 +102,18 @@ void	child_heredoc(t_data *data, char *filename, char *limiter)
 	free_heredoc(data);
 }
 
-char	*output_heredoc(t_data *data, char *limiter, char *line)
+char	*output_heredoc(t_data *data, char *delimiter, char *line)
 {
 	char	*buffer;
 
-	buffer = remove_quotes(limiter);
+	buffer = remove_quotes(delimiter);
 	if (g_signal == SIGINT || !line || ft_strcmp_nochr(buffer, line, '\n') == 0)
 	{
 		free(buffer);
 		return (NULL);
 	}
 	free(buffer);
-	if (!ft_strchr(limiter, '\'') && !ft_strchr(limiter, '\"'))
+	if (!ft_strchr(delimiter, '\'') && !ft_strchr(delimiter, '\"'))
 		buffer = get_value(data, line);
 	else
 		buffer = ft_strdup(line);

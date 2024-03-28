@@ -6,7 +6,7 @@
 /*   By: gude-cas <gude-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:15:24 by gcapa-pe          #+#    #+#             */
-/*   Updated: 2024/03/24 22:09:02 by gude-cas         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:43:09 by gude-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	execute(t_data *data, char **cmds)
 	free_data(data);
 }
 
+/* checks if the cmd is executable and returns the path of the cmd */
 char	**get_paths(t_list **env, char *cmd)
 {
 	int		i;
@@ -68,6 +69,7 @@ char	**get_paths(t_list **env, char *cmd)
 	return (path_dir);
 }
 
+/* checks for a cmd like './minishell' or '../a.out' */
 char	**special_path(const char *cmd)
 {
 	char	**paths;
